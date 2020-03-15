@@ -1,0 +1,58 @@
+&share
+ wrf_core = 'ARW',
+ max_dom = 2,
+ start_date = '2020-02-10_00:00:00', '2020-02-10_00:00:00', 
+ end_date   = '2020-02-10_12:00:00', '2020-02-10_12:00:00', 
+ interval_seconds = 3600,
+ io_form_geogrid = 2,
+ debug_level = 0,
+/
+
+&geogrid
+ parent_id         = 1,1,
+ parent_grid_ratio = 1,4,
+ i_parent_start    = 1,39,
+ j_parent_start    = 1,12,
+ e_we          = 115,217,
+ e_sn          = 83,177,
+ geog_data_res = '30s','30s',
+ dx = 5000,
+ dy = 5000,
+ map_proj =  'lambert',
+ ref_lat   = 42.36,
+ ref_lon   = 1.137,
+ truelat1  = 42.36,
+ truelat2  = 42.36,
+ stand_lon = 1.137,
+ GEOG_DATA_PATH       = '/root/RASPURI/geog'
+ OPT_GEOGRID_TBL_PATH = '/root/RASPURI/RUN.TABLES'
+ ref_x = 57.5,
+ ref_y = 41.5,
+/
+
+&ungrib
+ out_format = 'WPS',
+ prefix = 'UNGRIB',
+/
+
+&metgrid
+ fg_name = 'UNGRIB',
+ io_form_metgrid = 2,
+ OPT_METGRID_TBL_PATH = '/root/RASPURI/RUN.TABLES'
+/
+
+&mod_levs
+ press_pa = 201300 , 200100 , 100000 ,
+             95000 ,  90000 ,
+             85000 ,  80000 ,
+             75000 ,  70000 ,
+             65000 ,  60000 ,
+             55000 ,  50000 ,
+             45000 ,  40000 ,
+             35000 ,  30000 ,
+             25000 ,  20000 ,
+             15000 ,  10000 ,
+              5000 ,   1000
+ /
+
+

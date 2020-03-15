@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<title>RASPURI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Description" CONTENT="Meteo for paragliding. Weather predictions for free flying. Tiempo para parapente. Temps per parapent.">
+<meta name="google" content="notranslate" />
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+<script src="https://kit.fontawesome.com/9774425b79.js" crossorigin="anonymous"></script>
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+</style>
+<body class="w3-black">
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <img src="images/Voltor3.png" style="width:100%">
+  <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fas fa-cloud-sun-rain w3-xxlarge"></i>>
+    <p>FORECAST</p>
+  </a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fas fa-paw w3-xxlarge"></i>
+    <p>PROJECT</p>
+  </a>
+  <a href="OUT/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fas fa-file-download w3-xxlarge"></i>
+    <p>DATA</p>
+  </a>
+  <a href="contact.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fas fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="index.html" class="w3-bar-item w3-button" style="width:25% !important">FORECAST</a>
+    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">PROJECT</a>
+    <a href="OUT/" class="w3-bar-item w3-button" style="width:25% !important">DATA</a>
+    <a href="contact.html" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+  </div>
+</div>
+
+
+<!-- Page Content -->
+<div class="w3-padding-large" id="main">
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <h1 class="w3-jumbo"><span>RASPURI v2</span></h1>
+    <p>by Oriol Cervelló</p>
+    <!--<img src="images/parapente.jpg" alt="parapente" class="w3-image" width="992" height="1108">-->
+  </header>
+
+  <!-- About Section -->
+  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+    <h2 class="w3-text-light-grey">About</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p>RASPURI v2 is a new developed RASP (Regional Atmospheric Soaring Program). The idea came from updating to a 64 bit architecture and 
+    WRF to v4 the original <a href="http://raspuri.mooo.com">RASPURI</a>, which is a original <a href="http://www.drjack.info/">Dr Jack's RASP</a>.
+    RASPURI v2 is full coded in Python and Bash, except the <a href="https://github.com/oriolcervello/ncl_jack_fortran-for-Python">Fortran subroutines</a>
+    developed by Dr. Jack for some of the postprocessings. The whole application runs through Docker. 
+    </p>
+    <!-- <i class="fab fa-github-square w3-xlarge"></i> -->
+  </div>
+  <!-- Cite Section -->
+  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="Cite">
+    <h2 class="w3-text-light-grey">Cite</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p>Images and data of RASPURI v2 can be used publicly if correct referenced.   
+    For referencing images or data of RASPURI v2 use the following cite. 
+    <ul>
+      <li>Cervelló, Oriol, RASPURI v2. 2019. <a href="http://raspuri.catio.eu">raspuri.catio.eu</a></li>
+    </ul>
+    
+  </p>
+  </div>
+  <!-- Acknowledgements Section -->
+  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="Acknowledgements">
+    <h2 class="w3-text-light-grey">Acknowledgements</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <ul>
+      <li><a href="http://raspuri.mooo.com">Oriol's RASPURI</a></li>
+    </ul> 
+    <h3 class="w3-text-light-grey">RASP</h3>
+     <ul>
+      <li><a href="http://www.drjack.info/">Dr Jack</a> - <a href="https://github.com/oriolcervello/ncl_jack_fortran-for-Python">Fortran subroutines for Python</a></li>
+      <li><a href="https://www.mmm.ucar.edu/">National Center for Atmospheric Research (NCAR)</a> - <a href="https://www2.mmm.ucar.edu/wrf/users/"> WRF User Page</a> - <a href="https://opensky.ucar.edu/islandora/object/opensky:2898">WRF & WPS (doi:10.5065/1dfh-6p97)</a></li>
+      <li><a href="https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gfs.php">Global Forecast System (GFS) data</a></li>
+      <li><a href="https://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/">Wgrib2 </a></li>
+      <li><a href="https://visibleearth.nasa.gov/images/73934/topography">NASA Images</a></li>
+    </ul> 
+    <h3 class="w3-text-light-grey">Web</h3>
+     <ul>
+      <li><a href="https://freedns.afraid.org/">Free DNS</a></li>
+      <li><a href="https://www.w3schools.com/">w3schools.com</a></li>
+    </ul> 
+  </div>
+  
+ 
+        <!-- Footer -->
+      <footer class="w3-container w3-center w3-padding-64 w3-text-grey w3-small">
+        <a target="_blank" rel="noopener noreferrer" href='https://www.instagram.com/oriol_cervello/' class="w3-hover-black"> <i class="fab fa-instagram w3-large"  ></i></a>
+        <a target="_blank" rel="noopener noreferrer" href='https://www.youtube.com/channel%2FUCn8fI3xTGs9TULE-GhC_0yw' class="w3-hover-black"><i class="fab fa-youtube w3-large"  ></i></a>
+        <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/oriol-cervello/' class="w3-hover-black"> <i class="fab fa-linkedin w3-large"  ></i></a>
+        <a target="_blank" rel="noopener noreferrer" href='https://www.facebook.com/oriolcervello' class="w3-hover-black"><i class="fab fa-facebook-square w3-large"  ></i></a>
+        <p>Copyright 2019+ by Oriol Cevelló. All rights reserved.</p>
+      <!-- End footer -->
+  </footer>
+
+<!-- END PAGE CONTENT -->
+</div>
+
+</body>
+</html>

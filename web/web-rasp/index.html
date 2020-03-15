@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RASPURI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Description" CONTENT="Meteo for paragliding. Weather predictions for free flying. Tiempo parapente.  Temps per parapent.">
+    <meta name="google" content="notranslate" />
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="showrtcut icon" href="images/favicon.png" type="image/png" />
+    <script src="https://kit.fontawesome.com/9774425b79.js" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <style>
+    body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+    .w3-row-padding img {margin-bottom: 12px}
+    /* Set the width of the sidebar to 120px */
+    .w3-sidebar {width: 120px;background: #222;}
+    /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+    #main {margin-left: 120px}
+    /* Remove margins from "page content" on small screens */
+    @media only screen and (max-width: 600px) {#main {margin-left: 0}}
+    </style>
+    <body class="w3-black">
+
+    </style>
+<SCRIPT src="RASPURIviwer.js"></SCRIPT>
+
+
+</head>
+
+<body class="w3-black claro">
+
+
+    <!-- Icon Bar (Sidebar - hidden on small screens) -->
+    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+      <!-- Avatar image in top left corner -->
+      <img src="images/Voltor3.png" style="width:100%">
+      <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
+        <i class="fas fa-cloud-sun-rain w3-xxlarge"></i>
+        <p>FORECAST</p>
+      </a>
+      <a href="about.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+        <i class="fas fa-paw w3-xxlarge"></i>
+        <p>PROJECT</p>
+      </a>
+      <a href="OUT/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+        <i class="fas fa-file-download w3-xxlarge"></i>
+        <p>DATA</p>
+      </a>
+      <a href="contact.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+        <i class="fas fa-envelope w3-xxlarge"></i>
+        <p>CONTACT</p>
+      </a>
+    </nav>
+
+    <!-- Navbar on small screens (Hidden on medium and large screens) -->
+    <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+      <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+        <a href="#" class="w3-bar-item w3-button" style="width:25% !important">FORECAST</a>
+        <a href="about.html" class="w3-bar-item w3-button" style="width:25% !important">PROJECT</a>
+        <a href="OUT/" class="w3-bar-item w3-button" style="width:25% !important">DATA</a>
+        <a href="contact.html" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="w3-padding-large" id="main">
+      <!-- Header/Home -->
+      <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+        <h1 class="w3-xxlarge">RASPURI by Oriol Cervelló</h1>
+        <p>Meteo forecast for free flying</p>
+        <div   id="settime"> 
+            <table width="100%" cellpadding=0 >
+                <tr>
+                    <HR align=left width="100%">
+                    <td align=center>
+                        
+                        <A class="w3-xlarge w3-text-grey w3-hover-black" href='javascript:showRegion("dom02")' id="dom02"><i class="fas fa-map-marked-alt w3-xlarge"></i> Catalunya (2Km)</A><br>
+                        <A class="w3-xlarge w3-text-grey w3-hover-black" href='javascript:showRegion("dom01")' id="dom01"><i class="fas fa-map-marked-alt w3-xlarge"></i> Pirineus (6Km)</A><br>
+                    </td>
+                    <td align=center>
+                        <select class="w3-black" size="6">
+                          <option onclick='javascript:showParam("general_")'>General Scenario</option>
+                          <option onclick='javascript:showParam("sfcwind_")'>Surface Wind</option>
+                          <option onclick='javascript:showParam("blavgwind_")'>BL Avg Wind</option>
+                          <option onclick='javascript:showParam("bltopwind_")'>Wind at BL Top</option>
+                          <option onclick='javascript:showParam("cloudlow_")'>Clouds Low Level</option>
+                          <option onclick='javascript:showParam("cloudmid_")'>Clouds Mid Level</option>
+                          <option onclick='javascript:showParam("cloudhigh_")'>Clouds High Level</option>
+                          <option onclick='javascript:showParam("blcldpct_")'>BL Cloud Cover</option>
+                          <option onclick='javascript:showParam("bldepth_")'>BL depth</option>
+                          <option onclick='javascript:showParam("hbl_")'>Height of BL Top</option>
+                          <option onclick='javascript:showParam("blcwbase_")'>BL Explicit Cloud Base</option>
+                          <option onclick='javascript:showParam("rainTot_")'>Rain</option>
+                          <option onclick='javascript:showParam("mcape_")'>CAPE</option>
+
+                          <option onclick='javascript:showParam("hglider_")'>Thermalling Height</option>
+                          <option onclick='javascript:showParam("wstar_")'>Thermal Updraft Velocity</option>
+                          <option onclick='javascript:showParam("hwcrit_")'>Height of Critical Updraft Strength</option>
+                          <option onclick='javascript:showParam("wblMxMn_")'>BL Max. Up/Down Motion</option>
+                          <option onclick='javascript:showParam("bltopvariab_")'>BL Top Uncertainty/Variability</option>
+                          <option onclick='javascript:showParam("blwindshear_")'>BL Vertical Wind Shear</option>
+                          <option onclick='javascript:showParam("zsfclcl_")'>Cu Cloudbase</option>
+                          <option onclick='javascript:showParam("zblcl_")'>OvercastDevelopment Cloudbase</option>
+
+                          <option onclick='javascript:showParam("wind_500_")'>Winds 500 hPa</option>
+                          <option onclick='javascript:showParam("wind_700_")'>Winds 700 hPa</option>
+                          <option onclick='javascript:showParam("wind_925_")'>Winds 925 hPa</option>
+                          <option onclick='javascript:showParam("t_500_")'>Temp. 500 hPa</option>
+                          <option onclick='javascript:showParam("t_700_")'>Temp. 700 hPa</option>
+                          <option onclick='javascript:showParam("t_925_")'>Temp. 925 hPa</option>
+                          <option onclick='javascript:showParam("ht_500_")'>Geopotential height 500 hPa</option>
+                          <option onclick='javascript:showParam("ht_700_")'>Geopotential height 700 hPa</option>
+                          <option onclick='javascript:showParam("ht_925_")'>Geopotential height 925 hPa</option>
+
+                          <option onclick='javascript:showParam("sfctemp_")'>Surface temperature</option>
+                          <option onclick='javascript:showParam("hfx_")'>Surface Heating</option>
+                          <option onclick='javascript:showParam("td2_")'>Surface Dew Point</option>
+                          <option onclick='javascript:showParam("ter_")'>Terrain Height of the Model</option>
+                          <option onclick='javascript:showParam("snow_")'>Snow Water Equivalent</option>
+                          <option onclick='javascript:showParam("snowh_")'>Physical Snow Depth</option>
+                          <option onclick='javascript:showParam("mcin_")'>CIN</option>
+                          <option onclick='javascript:showParam("lfc_")'>LFC</option>
+                          <option onclick='javascript:showParam("lcl_")'>LCL</option>
+                          <option onclick='javascript:showParam("pw_")'>Precipitable Water</option>
+                          <option onclick='javascript:showParam("ctt_")'>Cloud top temp.</option>
+
+                          <option onclick="javascript:showSkew('Ager Desp._')">Sounding Ager Desp.</option>
+                          <option onclick="javascript:showParam('Ager Vall_')">Sounding Ager Vall</option>
+                          <option onclick="javascript:showParam('Bellmunt_')">Sounding Bellmunt</option>
+                          <option onclick="javascript:showParam('Belltall_')">Sounding Belltall</option>
+                          <option onclick="javascript:showParam('Berga - Rampa_')">Sounding Berga - Rampa</option>
+                          <option onclick="javascript:showParam('Castejon de Sos_')">Sounding Castejon de Sos</option>
+                          <option onclick="javascript:showParam('Organya_')">Sounding Organya</option>
+                          <option onclick="javascript:showParam('Rasos_')">Sounding Rasos</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" cellpadding=0>
+                <tr>
+                    <td align=center>
+                        <HR align=left width="100%">
+                        <button id="today-1" class="w3-black w3-large" onclick='javascript:showdate(-1)'></button>
+                        <button id="today" class="w3-black w3-large" onclick='javascript:showdate(0)'></button>
+                        <button id="today+1" class="w3-black w3-large" onclick='javascript:showdate(1)'></button>
+                        <button id="today+2" class="w3-black w3-large" onclick='javascript:showdate(2)'></button>
+                        <button id="today+3" class="w3-black w3-large" onclick='javascript:showdate(3)'></button>
+                        <A id="month" class="w3-large"></A>
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" cellpadding=0>
+                <tr>
+                    <td align=center>
+                        <a href="javascript:advancetime(-3)" class="w3-hover-black w3-text-grey" title="-3h"> <i class="fas fa-fast-backward w3-xlarge"></i></a>
+                        <span style="padding-right:10px;"></span>
+                        <a href="javascript:advancetime(-1)" class="w3-hover-black w3-text-grey" title="-1h"> <i class="fas fa-step-backward w3-xlarge"></i></a>
+                        <span style="padding-right:10px;"></span>
+                        <a href="javascript:advancetime(1)" class="w3-hover-black w3-text-grey" title="+1h"> <i class="fas fa-step-forward w3-xlarge"></i></a>
+                        <span style="padding-right:10px;"></span>
+                        <a href="javascript:advancetime(3)" class="w3-hover-black w3-text-grey" title="+3h"> <i class="fas fa-fast-forward w3-xlarge"></i></a>
+                    </td>
+                    <td align=center>    
+                        <a href="javascript:download()" download='cloudlow09.png' class="w3-hover-black w3-text-grey" title="Download"> <i class="fas fa-download w3-xlarge"></i></a>
+                        <span style="padding-right:20px;"></span>
+                        <a href="javascript:adjustImgSz(0.90)" class="w3-hover-black w3-text-grey" title="Zoom -10%"> <i class="fas fa-search-minus w3-xlarge"></i></a>
+                        <span style="padding-right:10px;"></span>
+                        <a href="javascript:origImgSz()" class="w3-hover-black w3-text-grey" title="Original Image Size"> <i class="fas fa-compress w3-xlarge"  ></i></a>
+                        <span style="padding-right:10px;"></span>
+                        <a href="javascript:adjustImgSz(1.10)" class="w3-hover-black w3-text-grey" title="Zoom +10%"> <i class="fas fa-search-plus w3-xlarge"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <SCRIPT   type=text/javascript> initshow(); </SCRIPT>
+        </div>
+        <div>
+            <table width="100%" cellpadding=0>
+                <tr>
+                    <td align=center>
+                        <button id="b11" class="w3-black" onclick='javascript:showTime(10)'>11:00</button>
+                        <button id="b12" class="w3-black" onclick='javascript:showTime(11)'>12:00</button>
+                        <button id="b13" class="w3-black" onclick='javascript:showTime(12)'>13:00</button>
+                        <button id="b14" class="w3-black" onclick='javascript:showTime(13)'>14:00</button>
+                        <button id="b15" class="w3-black" onclick='javascript:showTime(14)'>15:00</button>
+                        <button id="b16" class="w3-black" onclick='javascript:showTime(15)'>16:00</button>
+                        <button id="b17" class="w3-black" onclick='javascript:showTime(16)'>17:00</button>
+                        <button id="b18" class="w3-black" onclick='javascript:showTime(17)'>18:00</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+      </header>        
+    </div >
+    <div class="w3-container w3-center w3-padding-64 w3-small"><p> <a href="disclaimer.html" >*DISCLAIMER*</a> </p></div>
+        <!-- Footer -->
+      <footer class="w3-container w3-center w3-padding-64 w3-text-grey w3-small">
+        <a target="_blank" rel="noopener noreferrer" href='https://www.instagram.com/oriol_cervello/' class="w3-hover-black"> <i class="fab fa-instagram w3-large"  ></i></a>
+        <a target="_blank" rel="noopener noreferrer" href='https://www.youtube.com/channel%2FUCn8fI3xTGs9TULE-GhC_0yw' class="w3-hover-black"><i class="fab fa-youtube w3-large"  ></i></a>
+        <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/oriol-cervello/' class="w3-hover-black"> <i class="fab fa-linkedin w3-large"  ></i></a>
+        <a target="_blank" rel="noopener noreferrer" href='https://www.facebook.com/oriolcervello' class="w3-hover-black"><i class="fab fa-facebook-square w3-large"  ></i></a>
+        <p>Copyright 2019+ by Oriol Cevelló. All rights reserved.</p>
+      <!-- End footer -->
+      </footer>
+
+    <!-- END PAGE CONTENT -->
+    </div>
+<script>
+var n =  new Date();
+var days = [" Sun.", " Mon.", " Tue.", " Wed.", " Thu.", " Fri.", " Sat."];
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var d = n.getUTCDate();
+var dw = n.getUTCDay();
+var mili_original = n.getTime();
+document.getElementById('today').setAttribute('id',("0" + d).slice(-2));
+document.getElementById(("0" + d).slice(-2)).innerHTML = days[dw]+ " " +d;
+n =  new Date(mili_original+(24*3600*1000));
+dw = n.getUTCDay();
+var mili = n.getTime();
+d = n.getUTCDate();
+document.getElementById('today+1').setAttribute('id',("0" + d).slice(-2));
+document.getElementById(("0" + d).slice(-2)).innerHTML = days[dw]+ " " +d;
+n =  new Date(mili+(24*3600*1000));
+dw = n.getUTCDay();
+mili = n.getTime();
+d = n.getUTCDate();
+document.getElementById('today+2').setAttribute('id',("0" + d).slice(-2));
+document.getElementById(("0" + d).slice(-2)).innerHTML = days[dw]+ " " +d;
+n =  new Date(mili+(24*3600*1000));
+dw = n.getUTCDay();
+mili = n.getTime();
+d = n.getUTCDate();
+var y = n.getUTCFullYear();
+var m = n.getUTCMonth();
+document.getElementById('today+3').setAttribute('id',("0" + d).slice(-2));
+document.getElementById(("0" + d).slice(-2)).innerHTML = days[dw]+ " " +d;
+n =  new Date(mili_original-(24*3600*1000));
+dw = n.getUTCDay();
+d = n.getUTCDate();
+document.getElementById('today-1').setAttribute('id',("0" + d).slice(-2));
+document.getElementById(("0" + d).slice(-2)).innerHTML = days[dw]+ " " +d;
+document.getElementById("month").innerHTML = " of "+months[m]+ " of "+y;
+</script>
+</body>
+</html>

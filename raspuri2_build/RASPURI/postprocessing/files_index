@@ -1,0 +1,44 @@
+"CAPE" mcape, mcin, lcl, lfc
+"Surface temp." sfctemp
+"BL depth" bldepth
+"Sfc. wind" wspd10,wdir10
+"Precipitable Water" pw
+"Cloud top temp." ctt
+"Height of BL Top" hbl
+"Cloud fraction low alttitudes" cloudfrac_low
+"Cloud fraction mid alttitudes" cloudfrac_mid
+"Cloud fraction high alttitudes" cloudfrac_high
+"Longitudes" lons
+"Latitudes" lats
+"Sea Level Pressure" slp
+"Sfc. Heating" hfx
+"SNOW WATER EQUIVALENT" snow
+"PHYSICAL SNOW DEPTH" snowh
+"Rain" rainTot
+'Surface Dew Point' td2
+
+"geopotential height to 500 hPa ->5000m" ht_500
+" u, and v winds to 500 hPa ->5000m" wdir_500, wspd_500
+"Temp. to 500 hPa ->5000m" t_500
+
+"geopotential height to 700 hPa ->3000m" ht_700
+" u, and v winds to 700 hPa ->3000m" wdir_700, wspd_700
+"Temp. to 700 hPa ->3000m" t_700
+
+"geopotential height to 925 hPa ->762m" ht_925
+" u, and v winds to 925 hPa ->762m" wdir_925, wspd_925
+"Temp. to 925 hPa ->762m" t_925
+
+"BL Avg Wind" ublavgwind, vblavgwind, blavgwindspeed
+"Wind at BL Top" utop, vtop, bltopwindspeed
+"BL Cloud Cover" blcldpct 
+"BL Max. Up/Down Motion" wblMxMn
+"BL Explicit Cloud Base [AGL]" blcwbase      
+"Thermal Updraft Velocity" wstar
+"Height of Critical Updraft Strength" hwcrit
+"Cu Cloudbase" zsfclcl
+"OvercastDevelopment Cloudbase" zblcl
+"Thermalling Height" hglider
+"BL Top Uncertainty/Variability" bltopvariab
+"BL Vertical Wind Shear" blwindshear
+
