@@ -162,7 +162,7 @@ def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve
 
 def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     hour_i=int(hour)    
-    hour='_'+hour
+    #hour='_'+hour
     
     #########################################################################
     ##################   TOPO
@@ -204,7 +204,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         dire = np.radians(np.load(fprop2))
         U = -prop*np.sin(dire)
         V = -prop*np.cos(dire)
-        filename=outdir+'sfcwind'+hour+'.png'
+        filename=outdir+'sfcwind_'+hour+'.png'
         
     except Exception as e:
         print('****Error reading '+ptitle+', plot.py****')
@@ -219,7 +219,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         prop_f = np.load(fprop_f)    
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'cloudlow'+hour+'.png'
+        filename=outdir+'cloudlow_'+hour+'.png'
         ptitle='Clouds Low Level'
         cmap='Blues'
         units='[%]'
@@ -238,7 +238,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         prop_f = np.load(fprop_f)
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'cloudmid'+hour+'.png'
+        filename=outdir+'cloudmid_'+hour+'.png'
         ptitle='Clouds Mid Level'
         cmap='Blues'
         units='[%]'
@@ -257,7 +257,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         prop_f = np.load(fprop_f)    
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'cloudhigh'+hour+'.png'
+        filename=outdir+'cloudhigh_'+hour+'.png'
         ptitle='Clouds High Level'
         cmap='Blues'
         units='[%]'
@@ -276,7 +276,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         prop_f = np.load(fprop_f)
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'blcldpct'+hour+'.png'
+        filename=outdir+'blcldpct_'+hour+'.png'
         ptitle='BL Cloud Cover'
         cmap='Blues'
         units='[%]'
@@ -294,7 +294,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         fprop = datadir+'ter'+'.npy'
         prop = np.load(fprop)
         prop[prop <= 5.] ='nan'
-        filename=outdir+'ter'+hour+'.png'
+        filename=outdir+'ter_'+hour+'.png'
         ptitle='Terrain Height of the Model'
         cmap='tab20b'
         units='[m]'
@@ -313,7 +313,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'mcape'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'mcape'+hour+'.png'
+        filename=outdir+'mcape_'+hour+'.png'
         ptitle='CAPE (Convective Available Potential Energy)'
         cmap='jet'
         units='[J/kg]'
@@ -330,7 +330,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'mcin'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'mcin'+hour+'.png'
+        filename=outdir+'mcin_'+hour+'.png'
         ptitle='CIN (Convective Inhibition)'
         cmap='jet'
         units='[J/kg]'
@@ -347,7 +347,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'lfc'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'lfc'+hour+'.png'
+        filename=outdir+'lfc_'+hour+'.png'
         ptitle='LFC (Level of Free Convection)'
         cmap='tab20b'
         units='[m]'
@@ -365,7 +365,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         fprop = datadir+'lcl'+hour+'.npy'
         prop = np.load(fprop)
 
-        filename=outdir+'lcl'+hour+'.png'
+        filename=outdir+'lcl_'+hour+'.png'
         ptitle='LCL ( Lifted Condensation Level)'
         cmap='tab20b'
         units='[m]'
@@ -384,7 +384,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         prop_f = np.load(fprop_f)
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'pw'+hour+'.png'
+        filename=outdir+'pw_'+hour+'.png'
         ptitle='Precipitable Water'
         cmap='tab20b'
         units='[mm]'
@@ -409,7 +409,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         prop_f2[prop_f2 <= 0] = 'nan'
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'rainTot'+hour+'.png'
+        filename=outdir+'rainTot_'+hour+'.png'
         ptitle='Rain'
         cmap='jet'
         units='[mm]'
@@ -436,7 +436,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         prop_fclouds = np.load(fprop_f)
         fprop = datadir+'slp'+hour+'.npy'
         slp = np.load(fprop)
-        filename=outdir+'general'+hour+'.png'
+        filename=outdir+'general_'+hour+'.png'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
         print(e)
@@ -448,7 +448,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'sfctemp'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'sfctemp'+hour+'.png'
+        filename=outdir+'sfctemp_'+hour+'.png'
         ptitle='Surface temperature'
         cmap='tab20b'
         units='[ºC]'
@@ -465,7 +465,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'bldepth'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'bldepth'+hour+'.png'
+        filename=outdir+'bldepth_'+hour+'.png'
         ptitle='BL depth'
         cmap='tab20b'
         units='[m]'
@@ -482,7 +482,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'hbl'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'hbl'+hour+'.png'
+        filename=outdir+'hbl_'+hour+'.png'
         ptitle='Height of BL Top'
         cmap='tab20b'
         units='[m]'
@@ -499,7 +499,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop_f = datadir+'ctt'+hour+'.npy'
         prop_f = np.load(fprop_f)
-        filename=outdir+'ctt'+hour+'.png'
+        filename=outdir+'ctt_'+hour+'.png'
         ptitle='Cloud top temp.'
         cmap='Blues'
         units='[ºC]'
@@ -516,7 +516,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop_f = datadir+'hfx'+hour+'.npy'
         prop_f = np.load(fprop_f)
-        filename=outdir+'hfx'+hour+'.png'
+        filename=outdir+'hfx_'+hour+'.png'
         ptitle='Surface Heating'
         cmap='tab20b'
         units='[W/$m^2$]'
@@ -534,7 +534,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         fprop_f = datadir+'snow'+hour+'.npy'
         prop_f = np.load(fprop_f)
         prop_f[prop_f == 0] = 'nan'
-        filename=outdir+'snow'+hour+'.png'
+        filename=outdir+'snow_'+hour+'.png'
         ptitle='Snow Water Equivalent'
         cmap='jet'
         units='[mm]'
@@ -552,7 +552,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         fprop_f = datadir+'snowh'+hour+'.npy'
         prop_f = np.load(fprop_f)
         prop_f[prop_f == 0] = 'nan'
-        filename=outdir+'snowh'+hour+'.png'
+        filename=outdir+'snowh_'+hour+'.png'
         ptitle='Physical Snow Depth'
         cmap='jet'
         units='[m]'
@@ -569,7 +569,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'ht_500'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'ht_500'+hour+'.png'
+        filename=outdir+'ht_500_'+hour+'.png'
         ptitle='Geopotential height at 500 hPa'
         cmap='tab20b'
         units='[m]'
@@ -586,7 +586,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'ht_700'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'ht_700'+hour+'.png'
+        filename=outdir+'ht_700_'+hour+'.png'
         ptitle='Geopotential height at 700 hPa'
         cmap='tab20b'
         units='[m]'
@@ -603,7 +603,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'ht_925'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'ht_925'+hour+'.png'
+        filename=outdir+'ht_925_'+hour+'.png'
         ptitle='Geopotential height at 925 hPa'
         cmap='tab20b'
         units='[m]'
@@ -620,7 +620,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'t_500'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'t_500'+hour+'.png'
+        filename=outdir+'t_500_'+hour+'.png'
         ptitle='Temp. at 500 hPa'
         cmap='tab20b'
         units='[ºC]'
@@ -637,7 +637,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'t_700'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'t_700'+hour+'.png'
+        filename=outdir+'t_700_'+hour+'.png'
         ptitle='Temp. at 700 hPa'
         cmap='tab20b'
         units='[ºC]'
@@ -654,7 +654,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'t_925'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'t_925'+hour+'.png'
+        filename=outdir+'t_925_'+hour+'.png'
         ptitle='Temp. at 925 hPa'
         cmap='tab20b'
         units='[ºC]'
@@ -675,7 +675,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         dire = np.radians(np.load(fprop2))
         U = -prop*np.sin(dire)
         V = -prop*np.cos(dire)
-        filename=outdir+'wind_500'+hour+'.png'
+        filename=outdir+'wind_500_'+hour+'.png'
         ptitle='Winds at 500 hPa'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -692,7 +692,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         dire = np.radians(np.load(fprop2))
         U = -prop*np.sin(dire)
         V = -prop*np.cos(dire)
-        filename=outdir+'wind_700'+hour+'.png'
+        filename=outdir+'wind_700_'+hour+'.png'
         ptitle='Winds at 700 hPa'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -709,7 +709,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         dire = np.radians(np.load(fprop2))
         U = -prop*np.sin(dire)
         V = -prop*np.cos(dire)
-        filename=outdir+'wind_925'+hour+'.png'
+        filename=outdir+'wind_925_'+hour+'.png'
         ptitle='Winds at 925 hPa'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -726,7 +726,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         V = np.load(fprop2)
         fprop = datadir+'blavgwindspeed'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'blavgwind'+hour+'.png'
+        filename=outdir+'blavgwind_'+hour+'.png'
         ptitle='BL Avg Wind'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -743,7 +743,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         V = np.load(fprop2)
         fprop = datadir+'bltopwindspeed'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'bltopwind'+hour+'.png'
+        filename=outdir+'bltopwind_'+hour+'.png'
         ptitle='Wind at BL Top'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -756,7 +756,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'wblMxMn'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'wblMxMn'+hour+'.png'
+        filename=outdir+'wblMxMn_'+hour+'.png'
         ptitle='BL Max. Up/Down Motion'
         cmap='tab20b'
         units='[cm/s]'
@@ -773,7 +773,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'blcwbase'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'blcwbase'+hour+'.png'
+        filename=outdir+'blcwbase_'+hour+'.png'
         ptitle='BL Explicit Cloud Base [AGL]'
         cmap='tab20b'
         units='[m]'
@@ -790,7 +790,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'wstar'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'wstar'+hour+'.png'
+        filename=outdir+'wstar_'+hour+'.png'
         ptitle='Thermal Updraft Velocity'
         cmap='tab20b'
         units='[cm/s]'
@@ -807,7 +807,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'hwcrit'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'hwcrit'+hour+'.png'
+        filename=outdir+'hwcrit_'+hour+'.png'
         ptitle='Height of Critical Updraft Strength'
         cmap='tab20b'
         units='[m]'
@@ -824,7 +824,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'zsfclcl'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'zsfclcl'+hour+'.png'
+        filename=outdir+'zsfclcl_'+hour+'.png'
         ptitle='Cu Cloudbase'
         cmap='tab20b'
         units='[m]'
@@ -841,7 +841,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'zblcl'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'zblcl'+hour+'.png'
+        filename=outdir+'zblcl_'+hour+'.png'
         ptitle='OvercastDevelopment Cloudbase'
         cmap='tab20b'
         units='[m]'
@@ -858,7 +858,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'hglider'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'hglider'+hour+'.png'
+        filename=outdir+'hglider_'+hour+'.png'
         ptitle='Thermalling Height'
         cmap='tab20b'
         units='[m]'
@@ -875,7 +875,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'bltopvariab'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'bltopvariab'+hour+'.png'
+        filename=outdir+'bltopvariab_'+hour+'.png'
         ptitle='BL Top Uncertainty/Variability'
         cmap='tab20b'
         units='[m]'
@@ -892,7 +892,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'blwindshear'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'blwindshear'+hour+'.png'
+        filename=outdir+'blwindshear_'+hour+'.png'
         ptitle='BL Vertical Wind Shear'
         cmap='tab20b'
         units='[m/s]'
@@ -909,7 +909,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'td2'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'td2'+hour+'.png'
+        filename=outdir+'td2_'+hour+'.png'
         ptitle='Surface Dew Point'
         cmap='tab20b'
         units='[ºC]'

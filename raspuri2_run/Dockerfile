@@ -44,9 +44,8 @@ CMD ["cron", "-f"]
 
 
 
-
+#### INSTRUCTIONS ####
 #sudo docker build -t raspuri .
-
 #sudo docker run --rm --name raspuri2 -d -v /home/ori/data/geog:/root/RASPURI/geog -v /home/ori/OUT:/root/RASPURI/region/OUT raspuri
 
 

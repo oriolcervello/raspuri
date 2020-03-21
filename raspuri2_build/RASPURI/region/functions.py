@@ -458,7 +458,7 @@ def skewt_plots(dt,station,p,T,Td,u,v,outdir,idxij,utch,z):
     plt.figtext(0.99, 0.01, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
     #plt.figtext(0.01, 0.01, 'RASPURI by Oriol Cevrelló ', horizontalalignment='right') 
     plt.tight_layout()
-    filename=outdir+station+utch+'.png'
+    filename=outdir+station+'_'+utch+'.png'
     #plt.show()
     plt.savefig(filename)
     plt.close()
