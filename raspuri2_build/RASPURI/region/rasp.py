@@ -44,7 +44,7 @@ try:
     from pathlib import Path
     from datetime import datetime
     from pytz import timezone
-    from variables import DAYS_TO_PROCESS, START_HH, END_HH, DOMAINS, HOURS_TO_AVOID, BEGIN_INPUT_LINES, END_INPUT_LINE, BEGIN_WPS_LINES, END_WPS_LINE, SYMULTANEOUS_FTP, NUM_CPUS_WRF, WAIT_FTP,T_ZONE,TESTING
+    from variables import DAYS_TO_PROCESS, START_HH, END_HH, DOMAINS, BEGIN_INPUT_LINES, END_INPUT_LINE, BEGIN_WPS_LINES, END_WPS_LINE, SYMULTANEOUS_FTP, NUM_CPUS_WRF, WAIT_FTP,T_ZONE,TESTING
     import functions 
     import plot 
     import sys

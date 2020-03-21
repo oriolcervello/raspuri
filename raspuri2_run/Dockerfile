@@ -30,7 +30,6 @@ ENV BASEDIR=/root/RASPURI
 COPY Cat/* $BASEDIR/region/
 COPY variables.py $BASEDIR/region
 
-COPY rasp.py $BASEDIR/region
 COPY raspuri-cron /etc/cron.d/raspuri-cron
 
 

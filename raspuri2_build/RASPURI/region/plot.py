@@ -26,6 +26,7 @@
 # This script is part of RASPURI v2
 # Script containing the ploting functions
 import numpy as np
+import os
 import time
 import matplotlib as mpl
 mpl.use('Agg')
@@ -400,8 +401,8 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop_f = datadir+'rainTot'+hour+'.npy'
         prop_f = np.load(fprop_f)
-        if(os.path.exists(datadir+'rainTot_'+'{0:02}'.format(hour_i-1))+'.npy'))
-            fprop_f2 = datadir+'rainTot_'+'{0:02}'.format(hour_i-1))+'.npy'
+        if(os.path.exists(datadir+'rainTot_'+str('{0:02}'.format(hour_i-1))+'.npy')):
+            fprop_f2 = datadir+'rainTot_'+str('{0:02}'.format(hour_i-1))+'.npy'
             prop_f2 = np.load(fprop_f2)
             prop_f2=prop_f-prop_f2
 
