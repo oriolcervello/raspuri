@@ -1,10 +1,8 @@
-var origwidth=1400
-var origheight=800
-var Sorigwidth=900
-var Sorigheight=1100
-var origtime = 11
+var origtime = 12
 var minh=11
 var maxh=18
+var Overlay
+var bounds = L.latLngBounds([[ 40, -1], [ 41, 1]]);
 function IMG(prefix, region, date, param, time, png,ht,wid)
 {
 //rasp - replace model with date
@@ -18,8 +16,6 @@ function IMG(prefix, region, date, param, time, png,ht,wid)
   this._time = time;
   this._showwn = false;
   this._png = png;
-  this._ht = ht;
-  this._wid = wid;
 }
 IMG.prototype.getUrl = function ()
 {
@@ -30,17 +26,36 @@ IMG.prototype.getUrl = function ()
     }
     return imgUrl;
 }
+IMG.prototype.legendUrl = function ()
+{
+  with (this) {
+    var imgUrl = "";
+    timestr=("0" + _time).slice(-2)
+    imgUrl = _prefix+_region+"/"+_date+"/"+_param+timestr+'L'+_png 
+    }
+    return imgUrl;
+}
 IMG.prototype.show = function ()
 {
 //document.write("<p>"+this._ht+" width="+this._wid+" "+this.getUrl()+"</p>");
 timestr=("0" + this._time).slice(-2)
 name=this._param+timestr+this._png;
-document.write("<IMG src=\""+this.getUrl()+"\" alt=\""+name+"\" class=\"w3-image\" height=\""+this._ht+"\" width=\""+this._wid+"\" id=\"RASPimage\">");
+document.getElementById("showing").innerHTML = "Showing: "+name;
+    
+  var imageUrls = [
+        this.getUrl()
+    ];
+
+console.log('image'+imageUrls)
+    Overlay = L.imageOverlay( imageUrls, bounds, {
+        opacity: 1
+    }).addTo(map);
+
+
+    testLegend.addTo(map);
 
 }
-
-var IMG = new IMG("OUT/plot/", "dom01", "20200118", "Ager Desp._", origtime, ".png",origheight,origwidth)
-
+  
 function currentIMG()
 {
   return IMG;
@@ -68,8 +83,6 @@ function showTime(time)
 }
 function showParam(param)
 { 
-  IMG._ht = origheight;
-  IMG._wid = origwidth;
   IMG._param = param;
   load_js();
 }
@@ -89,14 +102,7 @@ function advancetime(hours)
   document.getElementById(bstr).className ='w3-light-grey';
   load_js();
 }
-function showSkew(param)
-{ 
-  IMG._ht = Sorigheight;
-  IMG._wid = Sorigwidth;
-  IMG._param = param;
-  load_js();
-  //adjustImgSz(0.85);
-}
+
 function showdate(date)
 { 
 
@@ -115,20 +121,7 @@ function showdate(date)
   load_js();
 }
 
-function adjustImgSz(fctr)
-{
-  
-  IMG._ht *= fctr;
-  IMG._wid *= fctr;
-  load_js();
-}
-function origImgSz()
-{
-  
-  IMG._ht = origheight;
-  IMG._wid = origwidth;
-  load_js();
-}
+
 
 function initshow()
 {  
@@ -156,14 +149,27 @@ function initshow()
 
 function load_js() {
  
- document.getElementById('RASPimage').src=IMG.getUrl();
- document.getElementById('RASPimage').width =IMG._wid;
- document.getElementById('RASPimage').height =IMG._ht;
- timestr=("0" + IMG._time).slice(-2);
- document.getElementById('RASPimage').alt =IMG._param+timestr+IMG._png;
+ if (map.hasLayer(Overlay)) {
+        map.removeLayer(Overlay);
+    }
+
+timestr=("0" + IMG._time).slice(-2)
+name=IMG._param+timestr+IMG._png;
+document.getElementById("showing").innerHTML = "Showing: "+name;
+    
+var imageUrls = [
+        IMG.getUrl()
+    ];
+ 
+ Overlay = L.imageOverlay( imageUrls, bounds, {
+        opacity: 0.7
+    }).addTo(map);
+    
+
+ document.getElementById('RASPlegend').src=IMG.legendUrl();
  
 }
-       
+
 function download() {
   var element = document.createElement('a');
   element.setAttribute('href', IMG.getUrl());
@@ -179,3 +185,20 @@ function download() {
 
   document.body.removeChild(element);
 }
+
+
+var IMG = new IMG("OUT/plot/", "dom01", "20200425", "cloudlow_", origtime, ".png")
+var map = L.map('map').setView([42, 1], 7);
+  L.esri.basemapLayer('Topographic').addTo(map);
+var testLegend = L.control({
+    position: 'topright'});
+testLegend.onAdd = function(map) {
+    var src = IMG.legendUrl();
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML +=
+        '<img src="' + src + '" alt="legend" height="400" id=\"RASPlegend\">';
+    return div;
+};
+initshow();
+       
+

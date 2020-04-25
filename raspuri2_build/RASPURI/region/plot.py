@@ -26,6 +26,7 @@
 # This script is part of RASPURI v2
 # Script containing the ploting functions
 import numpy as np
+from PIL import Image
 import os
 import time
 import matplotlib as mpl
@@ -36,7 +37,8 @@ import rasterio
 from rasterio.merge import merge
 from matplotlib.colors import LightSource
 from variables import DOTY,DOTX,DOTTITLE,TOPOFILES
-def plot_strem(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
+'''
+def plot_strem_old(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
     try:
         #PLOT TOPO
         fig, ax = plt.subplots(figsize=(14,8),dpi=100)
@@ -44,10 +46,10 @@ def plot_strem(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
         extent = [bounds.left,bounds.right , bounds.bottom , bounds.top]
         plt.imshow(ls.hillshade(mosaic[0,:,:], vert_exag=ve),extent=extent, cmap='gray',aspect='auto',interpolation='bessel')
         #PLOT DATA
-        '''
-        strm = ax.streamplot(x,y,U,V,color=prop*3.6, density=1.8 ,linewidth=1.8,arrowsize=1.3, cmap='tab20b')
-        cbar = fig.colorbar(strm.lines)
-        '''
+        
+        #strm = ax.streamplot(x,y,U,V,color=prop*3.6, density=1.8 ,linewidth=1.8,arrowsize=1.3, cmap='tab20b')
+        #cbar = fig.colorbar(strm.lines)
+        
         # Normalise the data for uniform arrow size
         u_norm = U / np.sqrt(U ** 2.0 + V ** 2.0)
         v_norm = V / np.sqrt(U ** 2.0 + V ** 2.0)
@@ -63,20 +65,20 @@ def plot_strem(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
         plt.figtext(0.99, 0.96, 'Valid for: '+valid_t, horizontalalignment='right') 
         UTC_time = time.gmtime()
         plt.figtext(0.99, 0.01, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
-        plt.figtext(0.01, 0.01, 'RASPURI by Oriol Cevrelló ', horizontalalignment='left') 
+        plt.figtext(0.01, 0.01, 'RASPURI', horizontalalignment='left') 
         #ANOTATIONS
         ax.scatter(DOTX, DOTY,color='red')
 
         for i, txt in enumerate(DOTTITLE):
             ax.annotate(txt, (DOTX[i], DOTY[i]),fontsize=10)
         ##SAVE    
-        plt.savefig(filename)
+        plt.savefig(filename+'.png')
         plt.close()
     except Exception as e: 
         print('****Error ploting the '+ptitle+', plot.py****')
         print(e)
 
-def plot_cont(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units):
+def plot_cont_old(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units):
     try:
         #PLOT TOPO
         fig, ax = plt.subplots(figsize=(14,8),dpi=100)
@@ -95,21 +97,19 @@ def plot_cont(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,
         plt.figtext(0.99, 0.96, 'Valid for: '+valid_t, horizontalalignment='right') 
         UTC_time = time.gmtime()
         plt.figtext(0.99, 0.01, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
-        plt.figtext(0.01, 0.01, 'RASPURI by Oriol Cevrelló ', horizontalalignment='left') 
+        plt.figtext(0.01, 0.01, 'RASPURI', horizontalalignment='left') 
         #ANOTATIONS
         ax.scatter(DOTX, DOTY,color='red')
         for i, txt in enumerate(DOTTITLE):
             ax.annotate(txt, (DOTX[i], DOTY[i]),fontsize=10)
         ##SAVE    
-        plt.savefig(filename)
+        plt.savefig(filename+'.png')
         plt.close()
     except Exception as e: 
         print('****Error ploting the '+ptitle+', plot.py****')
         print(e)
 
-
-
-def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy):
+def plot_general_sce_old(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy):
     try:    
         #PLOT TOPO
         fig, ax = plt.subplots(figsize=(14,11),dpi=100)
@@ -145,7 +145,7 @@ def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve
         plt.figtext(0.99, 0.96, 'Valid for: '+valid_t, horizontalalignment='right') 
         UTC_time = time.gmtime()
         plt.figtext(0.99, 0.01, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
-        plt.figtext(0.01, 0.01, 'RASPURI by Oriol Cevrelló ', horizontalalignment='left') 
+        plt.figtext(0.01, 0.01, 'RASPURI', horizontalalignment='left') 
 
         #ANOTATIONS
         ax.scatter(DOTX, DOTY,color='red')
@@ -154,8 +154,149 @@ def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve
             ax.annotate(txt, (DOTX[i], DOTY[i]),fontsize=10)
 
         ##SAVE    
-        plt.savefig(filename)
+        plt.savefig(filename+'.png')
         plt.close()
+    except Exception as e: 
+        print('****Error ploting the general scenario, plot.py****')
+        print(e)
+
+'''
+
+
+
+def plot_crop(filename):
+    im = Image.open(filename+'.png')
+    #w, h = yourImage.size
+    im.crop((1096, 26, 1385, 761)).save(filename+'L.png')
+    im.crop((176, 97, 1043, 712)).save(filename+'.png')
+
+
+
+
+
+def plot_cont(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units):
+    try:
+        #PLOT TOPO
+        fig, ax = plt.subplots(figsize=(14,8),dpi=100)
+        #plt.rcParams.update({'font.size': 18})
+        #extent = [bounds.left,bounds.right , bounds.bottom , bounds.top]
+        #plt.imshow(ls.hillshade(mosaic[0,:,:], vert_exag=ve),extent=extent, cmap='gray',aspect='auto',interpolation='bessel')
+        #PLOT DATA
+        CF=ax.contourf(x,y,prop_f,cmap=cmap, alpha=0.35,vmin=vmin,vmax=vmax)
+        cbar = fig.colorbar(CF)
+        cbar.ax.set_ylabel(units, fontsize=18)
+        cbar.ax.tick_params(labelsize=18)
+        if(prop is not None):
+            CS = ax.contour(x, y, prop,colors='k')    
+            ax.clabel(CS, fontsize=9, inline=1)
+        #plt.title(ptitle, loc='left')
+        plt.figtext(0.99, 0.92, 'Valid for: \n'+valid_t, horizontalalignment='right',fontsize=14) 
+        UTC_time = time.gmtime()
+        plt.figtext(0.99, 0.05, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
+        plt.figtext(0.93, 0.30, ptitle+'\n by RASPURI', horizontalalignment='center', rotation='vertical',fontsize=20) 
+        #ANOTATIONS
+        #ax.scatter(DOTX, DOTY,color='red')
+        #for i, txt in enumerate(DOTTITLE):
+        #    ax.annotate(txt, (DOTX[i], DOTY[i]),fontsize=10)
+        ##SAVE    
+        plt.savefig(filename+'.png', transparent=True)
+        plt.close()
+        plot_crop(filename)
+    except Exception as e: 
+        print('****Error ploting the '+ptitle+', plot.py****')
+        print(e)
+
+
+def plot_strem(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
+    try:
+        #PLOT TOPO
+        fig, ax = plt.subplots(figsize=(14,8),dpi=100)
+        #plt.rcParams.update({'font.size': 18})
+        #extent = [bounds.left,bounds.right , bounds.bottom , bounds.top]
+        #plt.imshow(ls.hillshade(mosaic[0,:,:], vert_exag=ve),extent=extent, cmap='gray',aspect='auto',interpolation='bessel')
+        #PLOT DATA
+        '''
+        strm = ax.streamplot(x,y,U,V,color=prop*3.6, density=1.8 ,linewidth=1.8,arrowsize=1.3, cmap='tab20b')
+        cbar = fig.colorbar(strm.lines)
+        '''
+        # Normalise the data for uniform arrow size
+        u_norm = U / np.sqrt(U ** 2.0 + V ** 2.0)
+        v_norm = V / np.sqrt(U ** 2.0 + V ** 2.0)
+        sca=4
+        CF=ax.contourf(x,y,prop*3.6,cmap="tab20b", alpha=0.30)
+        q = ax.quiver(x[::sca,::sca], y[::sca,::sca], u_norm[::sca,::sca], v_norm[::sca,::sca], pivot='middle', alpha=1)        
+
+        cbar = fig.colorbar(CF)
+        cbar.ax.set_ylabel('[km/h]', fontsize=18)
+        cbar.ax.tick_params(labelsize=18)
+
+        #plt.title(ptitle, loc='left')
+        plt.figtext(0.99, 0.92, 'Valid for: \n'+valid_t, horizontalalignment='right',fontsize=14) 
+        UTC_time = time.gmtime()
+        plt.figtext(0.99, 0.05, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
+        plt.figtext(0.93, 0.30, ptitle+'\n by RASPURI', horizontalalignment='center', rotation='vertical',fontsize=20)  
+        #ANOTATIONS
+        #ax.scatter(DOTX, DOTY,color='red')
+
+        #for i, txt in enumerate(DOTTITLE):
+        #    ax.annotate(txt, (DOTX[i], DOTY[i]),fontsize=10)
+        ##SAVE    
+        plt.savefig(filename+'.png', transparent=True)
+        plt.close()
+        plot_crop(filename)
+    except Exception as e: 
+        print('****Error ploting the '+ptitle+', plot.py****')
+        print(e)
+
+
+def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy):
+    try:    
+        #PLOT TOPO
+        fig, ax = plt.subplots(figsize=(14,8),dpi=100)
+        #plt.rcParams.update({'font.size': 18})
+
+        #extent = [bounds.left,bounds.right , bounds.bottom , bounds.top]
+        #plt.imshow(ls.hillshade(mosaic[0,:,:], vert_exag=ve),extent=extent, cmap='gray',aspect='auto',interpolation='bessel')
+
+        #PLOT DATA
+        u_norm = U / np.sqrt(U ** 2.0 + V ** 2.0)
+        v_norm = V / np.sqrt(U ** 2.0 + V ** 2.0)
+        sca=5
+        q = ax.quiver(x[::sca,::sca], y[::sca,::sca], u_norm[::sca,::sca], v_norm[::sca,::sca], pivot='middle', alpha=1)
+
+
+        CF4=ax.contourf(x,y,prop_rain,cmap='RdPu', alpha=0.45,vmin=0,vmax=np.max(prop_rain))
+        CF1=ax.contourf(x,y,prop_fclouds,cmap='Blues', alpha=0.25,vmin=0,vmax=130)
+
+        #clouds=(prop_fhigh+prop_fmid+prop_flow)*100
+        #CF1=ax.contourf(x,y,np.clip(clouds,0,100),cmap='Blues', alpha=0.20,vmin=0,vmax=130)
+        cbar = fig.colorbar(CF1)
+        cbar.ax.set_ylabel('BL Cloud Cover[%]', fontsize=18)
+        cbar.ax.tick_params(labelsize=18)
+        
+        #cbar2 = fig.colorbar(CF4,orientation='horizontal')
+        #cbar2.ax.set_xlabel('Rain [mm]', fontsize=18)
+        #cbar2.ax.tick_params(labelsize=18)
+
+        CS = ax.contour(x, y, prop,colors='k')    
+        ax.clabel(CS, fontsize=9, inline=1)
+
+        #plt.title('General Scenario', loc='left')
+        plt.figtext(0.99, 0.92, 'Valid for: \n'+valid_t, horizontalalignment='right',fontsize=14) 
+        UTC_time = time.gmtime()
+        plt.figtext(0.99, 0.05, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
+        plt.figtext(0.93, 0.30, 'General by RASPURI', horizontalalignment='center', rotation='vertical',fontsize=20) 
+
+        #ANOTATIONS
+        #ax.scatter(DOTX, DOTY,color='red')
+
+        #for i, txt in enumerate(DOTTITLE):
+        #    ax.annotate(txt, (DOTX[i], DOTY[i]),fontsize=10)
+
+        ##SAVE    
+        plt.savefig(filename+'.png', transparent=True)
+        plt.close()
+        plot_crop(filename)
     except Exception as e: 
         print('****Error ploting the general scenario, plot.py****')
         print(e)
@@ -184,6 +325,8 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
             dataset.append(rasterio.open(topodir+'gebco_08_rev_elev_'+topo+'_grey_geo.tif'))
 
         bounds=rasterio.coords.BoundingBox(np.min(lon),np.min(lat) ,np.max(lon),np.max(lat) )
+        with open(outdir+'bounds.txt', 'w') as f:
+            print(str(bounds.left)+'\n'+str(bounds.right) +'\n'+str(bounds.bottom)+'\n'+str(bounds.top), file=f)
         mosaic, out_trans = merge(dataset,bounds)
         for i in range(0,len(dataset)):
             dataset[i].close()
@@ -204,7 +347,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         dire = np.radians(np.load(fprop2))
         U = -prop*np.sin(dire)
         V = -prop*np.cos(dire)
-        filename=outdir+'sfcwind_'+hour+'.png'
+        filename=outdir+'sfcwind_'+hour
         
     except Exception as e:
         print('****Error reading '+ptitle+', plot.py****')
@@ -216,10 +359,11 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     #########################################################################
     try:
         fprop_f = datadir+'cloudfrac_low'+hour+'.npy'
-        prop_f = np.load(fprop_f)    
+        prop_f = np.load(fprop_f)  
+        prop_f[prop_f <= 0.15] ='nan'  
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'cloudlow_'+hour+'.png'
+        filename=outdir+'cloudlow_'+hour
         ptitle='Clouds Low Level'
         cmap='Blues'
         units='[%]'
@@ -236,9 +380,10 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop_f = datadir+'cloudfrac_mid'+hour+'.npy'
         prop_f = np.load(fprop_f)
+        prop_f[prop_f <= 0.15] ='nan'
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'cloudmid_'+hour+'.png'
+        filename=outdir+'cloudmid_'+hour
         ptitle='Clouds Mid Level'
         cmap='Blues'
         units='[%]'
@@ -254,10 +399,11 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     #########################################################################
     try:
         fprop_f = datadir+'cloudfrac_high'+hour+'.npy'
-        prop_f = np.load(fprop_f)    
+        prop_f = np.load(fprop_f)  
+        prop_f[prop_f <= 0.15] ='nan'  
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'cloudhigh_'+hour+'.png'
+        filename=outdir+'cloudhigh_'+hour
         ptitle='Clouds High Level'
         cmap='Blues'
         units='[%]'
@@ -274,9 +420,10 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop_f = datadir+'blcldpct'+hour+'.npy'
         prop_f = np.load(fprop_f)
+        prop_f[prop_f <= 0.15] ='nan'
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'blcldpct_'+hour+'.png'
+        filename=outdir+'blcldpct_'+hour
         ptitle='BL Cloud Cover'
         cmap='Blues'
         units='[%]'
@@ -294,7 +441,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         fprop = datadir+'ter'+'.npy'
         prop = np.load(fprop)
         prop[prop <= 5.] ='nan'
-        filename=outdir+'ter_'+hour+'.png'
+        filename=outdir+'ter_'+hour
         ptitle='Terrain Height of the Model'
         cmap='tab20b'
         units='[m]'
@@ -313,8 +460,8 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'mcape'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'mcape_'+hour+'.png'
-        ptitle='CAPE (Convective Available Potential Energy)'
+        filename=outdir+'mcape_'+hour
+        ptitle='CAPE'
         cmap='jet'
         units='[J/kg]'
         vmin=None
@@ -330,7 +477,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'mcin'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'mcin_'+hour+'.png'
+        filename=outdir+'mcin_'+hour
         ptitle='CIN (Convective Inhibition)'
         cmap='jet'
         units='[J/kg]'
@@ -347,7 +494,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'lfc'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'lfc_'+hour+'.png'
+        filename=outdir+'lfc_'+hour
         ptitle='LFC (Level of Free Convection)'
         cmap='tab20b'
         units='[m]'
@@ -365,7 +512,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         fprop = datadir+'lcl'+hour+'.npy'
         prop = np.load(fprop)
 
-        filename=outdir+'lcl_'+hour+'.png'
+        filename=outdir+'lcl_'+hour
         ptitle='LCL ( Lifted Condensation Level)'
         cmap='tab20b'
         units='[m]'
@@ -384,7 +531,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         prop_f = np.load(fprop_f)
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'pw_'+hour+'.png'
+        filename=outdir+'pw_'+hour
         ptitle='Precipitable Water'
         cmap='tab20b'
         units='[mm]'
@@ -405,11 +552,12 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
             fprop_f2 = datadir+'rainTot_'+str('{0:02}'.format(hour_i-1))+'.npy'
             prop_f2 = np.load(fprop_f2)
             prop_f2=prop_f-prop_f2
-
+        else:
+            prop_f2=prop_f
         prop_f2[prop_f2 <= 0] = 'nan'
         #fprop = datadir+'slp'+hour+'.npy'
         #prop = np.load(fprop)
-        filename=outdir+'rainTot_'+hour+'.png'
+        filename=outdir+'rainTot_'+hour
         ptitle='Rain'
         cmap='jet'
         units='[mm]'
@@ -434,9 +582,10 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         rain = prop_f2#np.load(fprop_f)
         fprop_f = datadir+'blcldpct'+hour+'.npy'
         prop_fclouds = np.load(fprop_f)
+        prop_fclouds[prop_fclouds <= 0.15] ='nan'
         fprop = datadir+'slp'+hour+'.npy'
         slp = np.load(fprop)
-        filename=outdir+'general_'+hour+'.png'
+        filename=outdir+'general_'+hour
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
         print(e)
@@ -448,7 +597,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'sfctemp'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'sfctemp_'+hour+'.png'
+        filename=outdir+'sfctemp_'+hour
         ptitle='Surface temperature'
         cmap='tab20b'
         units='[ºC]'
@@ -465,7 +614,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'bldepth'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'bldepth_'+hour+'.png'
+        filename=outdir+'bldepth_'+hour
         ptitle='BL depth'
         cmap='tab20b'
         units='[m]'
@@ -482,7 +631,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'hbl'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'hbl_'+hour+'.png'
+        filename=outdir+'hbl_'+hour
         ptitle='Height of BL Top'
         cmap='tab20b'
         units='[m]'
@@ -499,7 +648,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop_f = datadir+'ctt'+hour+'.npy'
         prop_f = np.load(fprop_f)
-        filename=outdir+'ctt_'+hour+'.png'
+        filename=outdir+'ctt_'+hour
         ptitle='Cloud top temp.'
         cmap='Blues'
         units='[ºC]'
@@ -516,7 +665,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop_f = datadir+'hfx'+hour+'.npy'
         prop_f = np.load(fprop_f)
-        filename=outdir+'hfx_'+hour+'.png'
+        filename=outdir+'hfx_'+hour
         ptitle='Surface Heating'
         cmap='tab20b'
         units='[W/$m^2$]'
@@ -534,7 +683,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         fprop_f = datadir+'snow'+hour+'.npy'
         prop_f = np.load(fprop_f)
         prop_f[prop_f == 0] = 'nan'
-        filename=outdir+'snow_'+hour+'.png'
+        filename=outdir+'snow_'+hour
         ptitle='Snow Water Equivalent'
         cmap='jet'
         units='[mm]'
@@ -552,7 +701,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         fprop_f = datadir+'snowh'+hour+'.npy'
         prop_f = np.load(fprop_f)
         prop_f[prop_f == 0] = 'nan'
-        filename=outdir+'snowh_'+hour+'.png'
+        filename=outdir+'snowh_'+hour
         ptitle='Physical Snow Depth'
         cmap='jet'
         units='[m]'
@@ -569,7 +718,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'ht_500'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'ht_500_'+hour+'.png'
+        filename=outdir+'ht_500_'+hour
         ptitle='Geopotential height at 500 hPa'
         cmap='tab20b'
         units='[m]'
@@ -586,7 +735,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'ht_700'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'ht_700_'+hour+'.png'
+        filename=outdir+'ht_700_'+hour
         ptitle='Geopotential height at 700 hPa'
         cmap='tab20b'
         units='[m]'
@@ -603,7 +752,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'ht_925'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'ht_925_'+hour+'.png'
+        filename=outdir+'ht_925_'+hour
         ptitle='Geopotential height at 925 hPa'
         cmap='tab20b'
         units='[m]'
@@ -620,7 +769,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'t_500'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'t_500_'+hour+'.png'
+        filename=outdir+'t_500_'+hour
         ptitle='Temp. at 500 hPa'
         cmap='tab20b'
         units='[ºC]'
@@ -637,7 +786,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'t_700'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'t_700_'+hour+'.png'
+        filename=outdir+'t_700_'+hour
         ptitle='Temp. at 700 hPa'
         cmap='tab20b'
         units='[ºC]'
@@ -654,7 +803,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'t_925'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'t_925_'+hour+'.png'
+        filename=outdir+'t_925_'+hour
         ptitle='Temp. at 925 hPa'
         cmap='tab20b'
         units='[ºC]'
@@ -675,7 +824,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         dire = np.radians(np.load(fprop2))
         U = -prop*np.sin(dire)
         V = -prop*np.cos(dire)
-        filename=outdir+'wind_500_'+hour+'.png'
+        filename=outdir+'wind_500_'+hour
         ptitle='Winds at 500 hPa'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -692,7 +841,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         dire = np.radians(np.load(fprop2))
         U = -prop*np.sin(dire)
         V = -prop*np.cos(dire)
-        filename=outdir+'wind_700_'+hour+'.png'
+        filename=outdir+'wind_700_'+hour
         ptitle='Winds at 700 hPa'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -709,7 +858,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         dire = np.radians(np.load(fprop2))
         U = -prop*np.sin(dire)
         V = -prop*np.cos(dire)
-        filename=outdir+'wind_925_'+hour+'.png'
+        filename=outdir+'wind_925_'+hour
         ptitle='Winds at 925 hPa'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -726,7 +875,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         V = np.load(fprop2)
         fprop = datadir+'blavgwindspeed'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'blavgwind_'+hour+'.png'
+        filename=outdir+'blavgwind_'+hour
         ptitle='BL Avg Wind'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -743,7 +892,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
         V = np.load(fprop2)
         fprop = datadir+'bltopwindspeed'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'bltopwind_'+hour+'.png'
+        filename=outdir+'bltopwind_'+hour
         ptitle='Wind at BL Top'
     except Exception as e: 
         print('****Error reading '+ptitle+', plot.py****')
@@ -756,7 +905,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'wblMxMn'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'wblMxMn_'+hour+'.png'
+        filename=outdir+'wblMxMn_'+hour
         ptitle='BL Max. Up/Down Motion'
         cmap='tab20b'
         units='[cm/s]'
@@ -773,7 +922,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'blcwbase'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'blcwbase_'+hour+'.png'
+        filename=outdir+'blcwbase_'+hour
         ptitle='BL Explicit Cloud Base [AGL]'
         cmap='tab20b'
         units='[m]'
@@ -790,7 +939,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'wstar'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'wstar_'+hour+'.png'
+        filename=outdir+'wstar_'+hour
         ptitle='Thermal Updraft Velocity'
         cmap='tab20b'
         units='[cm/s]'
@@ -807,7 +956,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'hwcrit'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'hwcrit_'+hour+'.png'
+        filename=outdir+'hwcrit_'+hour
         ptitle='Height of Critical Updraft Strength'
         cmap='tab20b'
         units='[m]'
@@ -824,7 +973,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'zsfclcl'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'zsfclcl_'+hour+'.png'
+        filename=outdir+'zsfclcl_'+hour
         ptitle='Cu Cloudbase'
         cmap='tab20b'
         units='[m]'
@@ -841,7 +990,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'zblcl'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'zblcl_'+hour+'.png'
+        filename=outdir+'zblcl_'+hour
         ptitle='OvercastDevelopment Cloudbase'
         cmap='tab20b'
         units='[m]'
@@ -858,7 +1007,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'hglider'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'hglider_'+hour+'.png'
+        filename=outdir+'hglider_'+hour
         ptitle='Thermalling Height'
         cmap='tab20b'
         units='[m]'
@@ -875,7 +1024,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'bltopvariab'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'bltopvariab_'+hour+'.png'
+        filename=outdir+'bltopvariab_'+hour
         ptitle='BL Top Uncertainty/Variability'
         cmap='tab20b'
         units='[m]'
@@ -892,7 +1041,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'blwindshear'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'blwindshear_'+hour+'.png'
+        filename=outdir+'blwindshear_'+hour
         ptitle='BL Vertical Wind Shear'
         cmap='tab20b'
         units='[m/s]'
@@ -909,7 +1058,7 @@ def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     try:
         fprop = datadir+'td2'+hour+'.npy'
         prop = np.load(fprop)
-        filename=outdir+'td2_'+hour+'.png'
+        filename=outdir+'td2_'+hour
         ptitle='Surface Dew Point'
         cmap='tab20b'
         units='[ºC]'

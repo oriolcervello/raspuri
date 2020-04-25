@@ -86,6 +86,7 @@ RUN eval $(~/.linuxbrew/bin/brew shellenv) \
 && pip3 install rasterio \
 && pip3 install scipy  \
 && pip3 install metpy \
+&& pip3 install Pillow \
 && pip3 install wrf-python
 
 RUN git clone https://github.com/wrf-model/WRF ~/WRF \
