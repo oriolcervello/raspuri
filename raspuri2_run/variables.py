@@ -32,7 +32,7 @@ DAYS_TO_PROCESS = 3 #max 5
 START_HH = 10 #local time
 END_HH = 18 #local time, max 23
 DOMAINS = 2
-HOURS_TO_AVOID = 6 #h to avoid from processing, forecast will start and end h hours latter to avoid forecasting the processing hour
+#HOURS_TO_AVOID = 6 #h to avoid from processing, forecast will start and end h hours latter to avoid forecasting the processing hour
 #NAMELIST INPUT AND WPS LINES
 BEGIN_INPUT_LINES=2
 END_INPUT_LINE=18

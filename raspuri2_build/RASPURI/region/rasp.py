@@ -90,8 +90,8 @@ print('****RASPURI starting at: ' + time.strftime('%Y-%m-%d %H:%M:%S', local_tim
 #########################################################################
 ##################   CLEAN PREVIOUS RUN
 #########################################################################
-os.system("find OUT/data/ -type d -name '20*' -mtime +2 -exec rm -rf {} \;")
-os.system("find OUT/plot/ -type d -name '20*' -mtime +2 -exec rm -rf {} \;")
+os.system("find OUT/data/ -type d -name '20*' -mtime +7 -exec rm -rf {} \;")
+os.system("find OUT/plot/ -type d -name '20*' -mtime +7 -exec rm -rf {} \;")
 os.system('rm -rf OUT/LOG/*')
 os.system('rm -f OUT/data/wrf*')
 #########################################################################
@@ -116,12 +116,12 @@ elif(hour == 6 ):
     processing_time = time.strptime(processing_time_str, '%Y-%m-%d %H:%M:%S')
     processing_time_secs = calendar.timegm(processing_time)
 elif(hour == 12 ):
-    plusday=1
+    plusday=0
     processing_time_str = time.strftime('%Y-%m-%d 12:%M:%S', UTC_time)
     processing_time = time.strptime(processing_time_str, '%Y-%m-%d %H:%M:%S')
     processing_time_secs = calendar.timegm(processing_time)
 elif(hour == 18):
-    plusday=1
+    plusday=0
     processing_time_str = time.strftime('%Y-%m-%d 18:%M:%S', UTC_time)
     processing_time = time.strptime(processing_time_str, '%Y-%m-%d %H:%M:%S')
     processing_time_secs = calendar.timegm(processing_time)

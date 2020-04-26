@@ -2,8 +2,9 @@ var origtime = 12
 var minh=11
 var maxh=18
 var Overlay
-var bounds = L.latLngBounds([[ 40, -1], [ 41, 1]]);
-function IMG(prefix, region, date, param, time, png,ht,wid)
+var bounds1 = [[ 40.489006, -2.4023743], [ 44.1811, 4.676361]];
+var bounds2 = [[ 40.99739, -0.023239613], [ 42.98399, 3.2804303]];
+function IMG(prefix, region, date, param, time, png,bounds)
 {
 //rasp - replace model with date
   this._date = date;
@@ -16,6 +17,7 @@ function IMG(prefix, region, date, param, time, png,ht,wid)
   this._time = time;
   this._showwn = false;
   this._png = png;
+  this._bounds = bounds;
 }
 IMG.prototype.getUrl = function ()
 {
@@ -25,6 +27,10 @@ IMG.prototype.getUrl = function ()
     imgUrl = _prefix+_region+"/"+_date+"/"+_param+timestr+_png 
     }
     return imgUrl;
+}
+IMG.prototype.curbounds = function ()
+{
+  return this._bounds;
 }
 IMG.prototype.legendUrl = function ()
 {
@@ -46,8 +52,8 @@ document.getElementById("showing").innerHTML = "Showing: "+name;
         this.getUrl()
     ];
 
-console.log('image'+imageUrls)
-    Overlay = L.imageOverlay( imageUrls, bounds, {
+
+    Overlay = L.imageOverlay( imageUrls, L.latLngBounds(this.curbounds()), {
         opacity: 1
     }).addTo(map);
 
@@ -60,9 +66,16 @@ function currentIMG()
 {
   return IMG;
 }
+
 function showRegion(region)
 {  
   document.getElementById(IMG._region).className ="w3-xlarge w3-text-grey w3-hover-black";
+  if (region == "dom01") {
+    IMG._bounds=bounds1;
+  } 
+  if (region == "dom02") {
+    IMG._bounds=bounds2;
+  }
   IMG._region = region;
   document.getElementById(region).className ="w3-xlarge w3-black w3-hover-black";
   load_js();
@@ -161,7 +174,7 @@ var imageUrls = [
         IMG.getUrl()
     ];
  
- Overlay = L.imageOverlay( imageUrls, bounds, {
+ Overlay = L.imageOverlay( imageUrls, L.latLngBounds(IMG.curbounds()), {
         opacity: 0.7
     }).addTo(map);
     
@@ -187,7 +200,9 @@ function download() {
 }
 
 
-var IMG = new IMG("OUT/plot/", "dom01", "20200425", "cloudlow_", origtime, ".png")
+var IMG = new IMG("OUT/plot/", "dom01", "20200428", "cloudlow_", origtime, ".png",bounds1)
+console.log(IMG._bounds)
+console.log(bounds1)
 var map = L.map('map').setView([42, 1], 7);
   L.esri.basemapLayer('Topographic').addTo(map);
 var testLegend = L.control({
