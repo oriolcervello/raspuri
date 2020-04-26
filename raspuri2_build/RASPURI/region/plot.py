@@ -36,9 +36,15 @@ import matplotlib.patches as arrsty
 import rasterio
 from rasterio.merge import merge
 from matplotlib.colors import LightSource
-from variables import DOTY,DOTX,DOTTITLE,TOPOFILES
-'''
-def plot_strem_old(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
+from variables import DOTY,DOTX,DOTTITLE,TOPOFILES,PLOTTYPELAYER
+
+
+
+#########################################################################
+##################   IMAGE PLOTS
+#########################################################################
+
+def plot_strem_image(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
     try:
         #PLOT TOPO
         fig, ax = plt.subplots(figsize=(14,8),dpi=100)
@@ -78,7 +84,7 @@ def plot_strem_old(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,d
         print('****Error ploting the '+ptitle+', plot.py****')
         print(e)
 
-def plot_cont_old(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units):
+def plot_cont_image(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units):
     try:
         #PLOT TOPO
         fig, ax = plt.subplots(figsize=(14,8),dpi=100)
@@ -109,7 +115,7 @@ def plot_cont_old(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx
         print('****Error ploting the '+ptitle+', plot.py****')
         print(e)
 
-def plot_general_sce_old(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy):
+def plot_general_sce_image(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy):
     try:    
         #PLOT TOPO
         fig, ax = plt.subplots(figsize=(14,11),dpi=100)
@@ -160,27 +166,23 @@ def plot_general_sce_old(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls
         print('****Error ploting the general scenario, plot.py****')
         print(e)
 
-'''
 
 
+#########################################################################
+##################   LAYER PLOTS
+#########################################################################
 
 def plot_crop(filename):
     im = Image.open(filename+'.png')
-    #w, h = yourImage.size
+    #w, h = im.size
     im.crop((1096, 26, 1385, 761)).save(filename+'L.png')
     im.crop((176, 97, 1043, 712)).save(filename+'.png')
 
 
-
-
-
-def plot_cont(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units):
+def plot_cont_layer(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units):
     try:
-        #PLOT TOPO
         fig, ax = plt.subplots(figsize=(14,8),dpi=100)
-        #plt.rcParams.update({'font.size': 18})
-        #extent = [bounds.left,bounds.right , bounds.bottom , bounds.top]
-        #plt.imshow(ls.hillshade(mosaic[0,:,:], vert_exag=ve),extent=extent, cmap='gray',aspect='auto',interpolation='bessel')
+
         #PLOT DATA
         CF=ax.contourf(x,y,prop_f,cmap=cmap, alpha=0.35,vmin=vmin,vmax=vmax)
         cbar = fig.colorbar(CF)
@@ -189,15 +191,11 @@ def plot_cont(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,
         if(prop is not None):
             CS = ax.contour(x, y, prop,colors='k')    
             ax.clabel(CS, fontsize=9, inline=1)
-        #plt.title(ptitle, loc='left')
         plt.figtext(0.99, 0.92, 'Valid for: \n'+valid_t, horizontalalignment='right',fontsize=14) 
         UTC_time = time.gmtime()
         plt.figtext(0.99, 0.05, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
         plt.figtext(0.93, 0.30, ptitle+'\n by RASPURI', horizontalalignment='center', rotation='vertical',fontsize=20) 
-        #ANOTATIONS
-        #ax.scatter(DOTX, DOTY,color='red')
-        #for i, txt in enumerate(DOTTITLE):
-        #    ax.annotate(txt, (DOTX[i], DOTY[i]),fontsize=10)
+
         ##SAVE    
         plt.savefig(filename+'.png', transparent=True)
         plt.close()
@@ -207,18 +205,11 @@ def plot_cont(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,
         print(e)
 
 
-def plot_strem(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
+def plot_strem_layer(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
     try:
-        #PLOT TOPO
         fig, ax = plt.subplots(figsize=(14,8),dpi=100)
-        #plt.rcParams.update({'font.size': 18})
-        #extent = [bounds.left,bounds.right , bounds.bottom , bounds.top]
-        #plt.imshow(ls.hillshade(mosaic[0,:,:], vert_exag=ve),extent=extent, cmap='gray',aspect='auto',interpolation='bessel')
+
         #PLOT DATA
-        '''
-        strm = ax.streamplot(x,y,U,V,color=prop*3.6, density=1.8 ,linewidth=1.8,arrowsize=1.3, cmap='tab20b')
-        cbar = fig.colorbar(strm.lines)
-        '''
         # Normalise the data for uniform arrow size
         u_norm = U / np.sqrt(U ** 2.0 + V ** 2.0)
         v_norm = V / np.sqrt(U ** 2.0 + V ** 2.0)
@@ -230,16 +221,12 @@ def plot_strem(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
         cbar.ax.set_ylabel('[km/h]', fontsize=18)
         cbar.ax.tick_params(labelsize=18)
 
-        #plt.title(ptitle, loc='left')
+
         plt.figtext(0.99, 0.92, 'Valid for: \n'+valid_t, horizontalalignment='right',fontsize=14) 
         UTC_time = time.gmtime()
         plt.figtext(0.99, 0.05, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
         plt.figtext(0.93, 0.30, ptitle+'\n by RASPURI', horizontalalignment='center', rotation='vertical',fontsize=20)  
-        #ANOTATIONS
-        #ax.scatter(DOTX, DOTY,color='red')
 
-        #for i, txt in enumerate(DOTTITLE):
-        #    ax.annotate(txt, (DOTX[i], DOTY[i]),fontsize=10)
         ##SAVE    
         plt.savefig(filename+'.png', transparent=True)
         plt.close()
@@ -249,14 +236,10 @@ def plot_strem(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
         print(e)
 
 
-def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy):
+def plot_general_sce_layer(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy):
     try:    
-        #PLOT TOPO
-        fig, ax = plt.subplots(figsize=(14,8),dpi=100)
-        #plt.rcParams.update({'font.size': 18})
 
-        #extent = [bounds.left,bounds.right , bounds.bottom , bounds.top]
-        #plt.imshow(ls.hillshade(mosaic[0,:,:], vert_exag=ve),extent=extent, cmap='gray',aspect='auto',interpolation='bessel')
+        fig, ax = plt.subplots(figsize=(14,8),dpi=100)
 
         #PLOT DATA
         u_norm = U / np.sqrt(U ** 2.0 + V ** 2.0)
@@ -264,34 +247,20 @@ def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve
         sca=5
         q = ax.quiver(x[::sca,::sca], y[::sca,::sca], u_norm[::sca,::sca], v_norm[::sca,::sca], pivot='middle', alpha=1)
 
-
         CF4=ax.contourf(x,y,prop_rain,cmap='RdPu', alpha=0.45,vmin=0,vmax=np.max(prop_rain))
         CF1=ax.contourf(x,y,prop_fclouds,cmap='Blues', alpha=0.25,vmin=0,vmax=130)
 
-        #clouds=(prop_fhigh+prop_fmid+prop_flow)*100
-        #CF1=ax.contourf(x,y,np.clip(clouds,0,100),cmap='Blues', alpha=0.20,vmin=0,vmax=130)
         cbar = fig.colorbar(CF1)
         cbar.ax.set_ylabel('BL Cloud Cover[%]', fontsize=18)
         cbar.ax.tick_params(labelsize=18)
         
-        #cbar2 = fig.colorbar(CF4,orientation='horizontal')
-        #cbar2.ax.set_xlabel('Rain [mm]', fontsize=18)
-        #cbar2.ax.tick_params(labelsize=18)
-
         CS = ax.contour(x, y, prop,colors='k')    
         ax.clabel(CS, fontsize=9, inline=1)
 
-        #plt.title('General Scenario', loc='left')
         plt.figtext(0.99, 0.92, 'Valid for: \n'+valid_t, horizontalalignment='right',fontsize=14) 
         UTC_time = time.gmtime()
         plt.figtext(0.99, 0.05, time.strftime('Computed on %d/%m/%y %H:%M:%S UTC \n', UTC_time)+ 'dx: '+str(dx)+'m dy: '+str(dy)+'m ', horizontalalignment='right', fontsize=10) 
         plt.figtext(0.93, 0.30, 'General by RASPURI', horizontalalignment='center', rotation='vertical',fontsize=20) 
-
-        #ANOTATIONS
-        #ax.scatter(DOTX, DOTY,color='red')
-
-        #for i, txt in enumerate(DOTTITLE):
-        #    ax.annotate(txt, (DOTX[i], DOTY[i]),fontsize=10)
 
         ##SAVE    
         plt.savefig(filename+'.png', transparent=True)
@@ -300,6 +269,34 @@ def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve
     except Exception as e: 
         print('****Error ploting the general scenario, plot.py****')
         print(e)
+
+
+
+
+
+def plot_cont(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units):
+    if(PLOTTYPELAYER):
+        plot_cont_layer(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units)
+    else:
+        plot_cont_image(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units)
+
+
+def plot_strem(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
+    if(PLOTTYPELAYER):
+        plot_strem_layer(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy)
+    else:
+        plot_strem_image(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy)
+
+def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy):
+    if(PLOTTYPELAYER):
+        plot_general_sce_layer(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy)
+    else:
+        plot_general_sce_image(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy
+
+
+#########################################################################
+##################   CALL TO PLOTS
+#########################################################################
 
 def plot_rasp(datadir,hour,valid_t,dx,dy,outdir):
     hour_i=int(hour)    
