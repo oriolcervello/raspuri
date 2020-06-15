@@ -1,6 +1,6 @@
 var origtime = 12
-var minh=11
-var maxh=18
+var minh=9
+var maxh=16
 var Overlay
 var bounds1 = [[ 40.489006, -2.4023743], [ 44.1811, 4.676361]];
 var bounds2 = [[ 40.99739, -0.023239613], [ 42.98399, 3.2804303]];
