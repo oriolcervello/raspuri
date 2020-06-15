@@ -3,8 +3,8 @@ var origheight=800
 var Sorigwidth=900
 var Sorigheight=1100
 var origtime = 11
-var minh=11
-var maxh=18
+var minh=9
+var maxh=16
 function IMG(prefix, region, date, param, time, png,ht,wid)
 {
 //rasp - replace model with date
