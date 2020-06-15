@@ -59,7 +59,7 @@ UTC_time_sec = calendar.timegm(UTC_time)
 #local_time = time.gmtime(local_time_secs)
 local_time=datetime.now(timezone(T_ZONE)).timetuple()
 local_time_secs=calendar.timegm(local_time)
-HH_ZONE=round((local_time_secs-UTC_time_sec)/3600)
+HH_ZONE=int((local_time_secs-UTC_time_sec)/3600)
 print('****WELCOME TO RASPURI****')
 print("""==========================================================================
   COPYRIGHT NOTICE
@@ -101,8 +101,6 @@ os.system('rm -f OUT/data/wrf*')
 #print "Number of arguments: ", len(sys.argv)
 #print "The arguments are: " , str(sys.argv)
 hour = int(sys.argv[1])
-print(hour)
-
 
 
 if(hour == 0):
@@ -116,12 +114,12 @@ elif(hour == 6 ):
     processing_time = time.strptime(processing_time_str, '%Y-%m-%d %H:%M:%S')
     processing_time_secs = calendar.timegm(processing_time)
 elif(hour == 12 ):
-    plusday=0
+    plusday=1
     processing_time_str = time.strftime('%Y-%m-%d 12:%M:%S', UTC_time)
     processing_time = time.strptime(processing_time_str, '%Y-%m-%d %H:%M:%S')
     processing_time_secs = calendar.timegm(processing_time)
 elif(hour == 18):
-    plusday=0
+    plusday=1
     processing_time_str = time.strftime('%Y-%m-%d 18:%M:%S', UTC_time)
     processing_time = time.strptime(processing_time_str, '%Y-%m-%d %H:%M:%S')
     processing_time_secs = calendar.timegm(processing_time)
@@ -168,7 +166,7 @@ try:
     namelist_times = []
 
     for i in range(0,len(hours_downloaded)):
-        namelist_times.append(time.gmtime((processing_time_secs +plusday*24*3600) + (hours_downloaded[i]*60*60)))
+        namelist_times.append(time.gmtime((processing_time_secs) + (hours_downloaded[i]*60*60)))
          
     process_rounds = 0    
     start_h = hours_downloaded[0]
