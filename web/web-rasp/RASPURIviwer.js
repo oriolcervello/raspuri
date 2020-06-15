@@ -1,7 +1,7 @@
-var origwidth=1400
+var origwidth=600
 var origheight=800
-var Sorigwidth=900
-var Sorigheight=1100
+var Sorigwidth=600
+var Sorigheight=800
 var origtime = 11
 var minh=9
 var maxh=16
