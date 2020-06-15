@@ -204,7 +204,10 @@ var IMG = new IMG("OUT/plot/", "dom01", "20200428", "cloudlow_", origtime, ".png
 console.log(IMG._bounds)
 console.log(bounds1)
 var map = L.map('map').setView([42, 1], 7);
-  L.esri.basemapLayer('Topographic').addTo(map);
+  //L.esri.basemapLayer('Topographic').addTo(map);
+var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+}).addTo(map);;
 var testLegend = L.control({
     position: 'topright'});
 testLegend.onAdd = function(map) {
