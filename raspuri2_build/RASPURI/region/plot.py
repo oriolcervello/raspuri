@@ -291,7 +291,7 @@ def plot_general_sce(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve
     if(PLOTTYPELAYER):
         plot_general_sce_layer(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy)
     else:
-        plot_general_sce_image(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy
+        plot_general_sce_image(U,V, prop_fclouds,prop_rain, prop, filename, bounds, ls, ve, mosaic, x, y, valid_t, dx, dy)
 
 
 #########################################################################
