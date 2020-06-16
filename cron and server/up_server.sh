@@ -6,4 +6,4 @@
 crontab dnsupdate
 
 
-docker run --name webR --rm -p 80:80 -d -v /home/ori/OUT/plot:/usr/share/nginx/html/OUT/plot webrasp
+docker run --name webR --rm -p 80:80 -d -v /home/ori/OUT:/usr/share/nginx/html/OUT webrasp

@@ -245,7 +245,7 @@ def plot_general_sce_layer(U,V, prop_fclouds,prop_rain, prop, filename, bounds, 
         u_norm = U / np.sqrt(U ** 2.0 + V ** 2.0)
         v_norm = V / np.sqrt(U ** 2.0 + V ** 2.0)
         sca=4
-        q = ax.quiver(x[::sca,::sca], y[::sca,::sca], u_norm[::sca,::sca], v_norm[::sca,::sca], pivot='middle', alpha=1,,width=0.0025)
+        q = ax.quiver(x[::sca,::sca], y[::sca,::sca], u_norm[::sca,::sca], v_norm[::sca,::sca], pivot='middle', alpha=1,width=0.0025)
 
         CF4=ax.contourf(x,y,prop_rain,cmap='RdPu', alpha=0.45,vmin=0,vmax=np.max(prop_rain))
         CF1=ax.contourf(x,y,prop_fclouds,cmap='Blues', alpha=0.25,vmin=0,vmax=130)
