@@ -23,7 +23,7 @@
 #==========================================================================
 # Dokerfile
 # This script is part of RASPURI v2
-# Dokerfile to build image with all dependencies and WRF engine
+# Dokerfile to build image with all the scripts of RASPURI
 
 FROM oriolcervello/raspuri:wrf
 
