@@ -7,9 +7,13 @@ Actual predictions can be found in [raspuri.catio.eu](http://raspuri.catio.eu/).
 
 ## Workflow
 
+In construction...
 
 ## Repository
 
+In construction...
+
+Already build images can be found in [DockerHub oriolcervello/raspuri](https://hub.docker.com/repository/docker/oriolcervello/raspuri).
 
 ## Acknowledgements
 
