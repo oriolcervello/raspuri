@@ -1,32 +1,29 @@
 #==========================================================================
-#  COPYRIGHT NOTICE
-#
-#   RASPURI v2 of RASPURI a RASP(Regional Atmospheric
+#   RASPURI v2 a RASP(Regional Atmospheric
 #   Soaring Predictions) COMPUTER PROGRAM
 #   Original Creator: Oriol Cervelló i Nogués ( raspuri [at] protonmail.com )
-#   Copyright 2019+ by Oriol Cervelló i Nogués, All rights reserved.
+#   Copyright (C) 2019+ by Oriol Cervelló i Nogués
+#==========================================================================
+# License: GNU GPLv3.0
+# Copyright (C) 2019  Oriol Cervelló
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 # 
-#  This program and all scripts, data and information from RASPURI v2 
-#  are the property of the creator and copyright holder and is not 
-#  to be copied, modified, or distributed to others without obtaining the 
-#  permission of the copyright holder during the life of the copyright holder.
-#
-#  Title to copyright in this program and any associated documentation
-#  will at all times remain with the copyright holder until his death.
-#
-#  Upon the death of the original creator and copyright holder, 
-#  this program and all RASPURI v2 programs, scripts, data and 
-#  information are to be released under the terms of version 3 o
-#  f the GNU General Public License. A copy of that license can 
-#  also be obtained from the Free Software Foundation, Inc. on-line at
-#  https://www.gnu.org/licenses/.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #==========================================================================
 #==========================================================================
 # 
 # This script is part of RASPURI v2
 # Script to test an develop the postprocessing
-#https://www.numfys.net/howto/F2PY/
-#https://docs.scipy.org/doc/numpy/f2py/getting-started.html#the-quick-way
 #########################################################################
 ##################   SAVE VARS TO PLOT
 #########################################################################
