@@ -1,12 +1,6 @@
-#########################################################################
-#########################################################################
-##################   RASPURI v2 by Oriol Cervelló
-#########################################################################
-#########################################################################
 #==========================================================================
-#   RASPURI v2 a RASP(Regional Atmospheric
-#   Soaring Predictions) COMPUTER PROGRAM
-#   Original Creator: Oriol Cervelló i Nogués ( raspuri [at] protonmail.com )
+#   RASPURI v2. github.com/oriolcervello/raspuri
+#   Oriol Cervelló i Nogués, ( raspuri [at] protonmail.com ).
 #   Copyright (C) 2019+ by Oriol Cervelló i Nogués
 #==========================================================================
 # License: GNU GPLv3.0
@@ -60,9 +54,8 @@ local_time_secs=calendar.timegm(local_time)
 HH_ZONE=int((local_time_secs-UTC_time_sec)/3600)
 print('****WELCOME TO RASPURI****')
 print("""==========================================================================
-   RASPURI v2 a RASP(Regional Atmospheric
-   Soaring Predictions) COMPUTER PROGRAM
-   Original Creator: Oriol Cervelló i Nogués ( raspuri [at] protonmail.com )
+   RASPURI v2. github.com/oriolcervello/raspuri
+   Oriol Cervelló i Nogués, ( raspuri [at] protonmail.com ).
    Copyright (C) 2019+ by Oriol Cervelló i Nogués
 ==========================================================================
  License: GNU GPLv3.0
