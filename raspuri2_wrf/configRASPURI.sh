@@ -65,10 +65,6 @@ cd ../WPS
 #./compile plotfmt
 #./compile plotgrids
 
-cd ../RASPURI
-bash links.sh
-rm links.sh
-#borrar configRASP
 
 
 

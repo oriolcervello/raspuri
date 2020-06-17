@@ -207,7 +207,7 @@ def plot_cont_layer(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,
 
 def plot_strem_layer(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy):
     try:
-        fig, ax = plt.subplots(figsize=(14,8),dpi=100)
+        fig, ax = plt.subplots(figsize=(14,8),dpi=200)
 
         #PLOT DATA
         # Normalise the data for uniform arrow size
