@@ -5,15 +5,28 @@ RASPURI v2 is a new developed RASP (Regional Atmospheric Soaring Program). The i
 Actual predictions can be found in [raspuri.catio.eu](http://raspuri.catio.eu/). In case the server is down, an example of the output predictions and the web page can be find [here](https://oriolcervello.github.io/).
 
 
-## Workflow
-
-In construction...
-
 ## Repository
 
-In construction...
+The structure of this RASP (and repo) is divided in 3 Docker images.
+
+1. [WRF Image](https://github.com/oriolcervello/raspuri/tree/master/raspuri2_wrf): This image is the base one, in here all the dependencies and the WRF & WPS engines are downloaded and compiled.
+2. [Build Image](https://github.com/oriolcervello/raspuri/tree/master/raspuri2_build): This image uses as base layer the previous image. In this step, only a layer with the Raspuri scripts is added. It is done in this way in order that small changes in the code can be done without the need of downloading and compiling everything again.
+3. [Run Image](https://github.com/oriolcervello/raspuri/tree/master/raspuri2_run): This image is the final one we will be runing. It will use the Build Image as base and will copy the parameters of the region for the forecast and set the cron task.
 
 Already build images can be found in [DockerHub oriolcervello/raspuri](https://hub.docker.com/repository/docker/oriolcervello/raspuri).
+
+In addition to the images,  [this mandatory data]() is necessary in order that the WRF works and for some plots. As it is very heavy is not in the repo. The data for the WRF can be find individualy in [UCAR data](https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html) and the images for the plots in [NASA Images](https://visibleearth.nasa.gov/images/73934/topography).
+
+If your interest is just in the forecasting, check the [Run Image](https://github.com/oriolcervello/raspuri/tree/master/raspuri2_run). Otherwise, check the other two images.
+
+Web?
+
+In construction...
+
+
+## RASP Workflow
+
+In construction...
 
 ## Acknowledgements
 
