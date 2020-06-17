@@ -27,7 +27,7 @@ import numpy as np
 #TIMES
 T_ZONE = 'CET' #list of possible TZ https://stackoverflow.com/questions/13866926/is-there-a-list-of-pytz-timezones
 DAYS_TO_PROCESS = 3 #max 5
-START_HH = 10 #local time
+START_HH = 11 #local time
 END_HH = 18 #local time, max 23
 DOMAINS = 2
 #HOURS_TO_AVOID = 6 #h to avoid from processing, forecast will start and end h hours latter to avoid forecasting the processing hour

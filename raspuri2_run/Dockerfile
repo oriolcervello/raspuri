@@ -23,7 +23,7 @@
 # Dokerfile
 # This script is part of RASPURI v2
 # Script to build the Running image of RASPURI
-FROM oriolcervello/raspuri:compiled
+FROM oriolcervello/raspuri:build
 ENV BASEDIR=/root/RASPURI
 COPY Cat/* $BASEDIR/region/
 COPY variables.py $BASEDIR/region

@@ -234,7 +234,7 @@ def plot_strem_layer(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx
         plt.savefig(filename+'.png', transparent=True)
         plt.savefig(filename+'original.png', transparent=True)
         plt.close()
-        plot_cont_layer(filename)
+        plot_crop_stream(filename)
     except Exception as e: 
         print('****Error ploting the '+ptitle+', plot.py****')
         print(e)

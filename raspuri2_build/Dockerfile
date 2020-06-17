@@ -37,7 +37,7 @@ RUN cd /root/RASPURI \
 WORKDIR /root/
 
 #### INSTRUCTIONS ####
-#sudo docker build -t oriolcervello/raspuri:compiled .
+#sudo docker build -t oriolcervello/raspuri:build .
 
 
 
