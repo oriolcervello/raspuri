@@ -45,7 +45,8 @@ Web:
 * [Leaflet](https://leafletjs.com/)
 
 ## Credit & License
-Cervelló, Oriol. RASPURI v2. 2019. [github.com/oriolcervello/raspuri](https://github.com/oriolcervello/raspuri)
-raspuri@protonmail.com
+
+Oriol Cervelló i Nogués, ( raspuri [at] protonmail.com ).
+RASPURI v2. 2019. [github.com/oriolcervello/raspuri](https://github.com/oriolcervello/raspuri)
 
 Find copy of GNU GPLv3.0 in License.txt
