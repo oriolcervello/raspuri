@@ -1,6 +1,6 @@
 #==========================================================================
-#   Oriol Cervelló i Nogués, ( raspuri [at] protonmail.com ).
 #   RASPURI v2. github.com/oriolcervello/raspuri
+#   Oriol Cervelló i Nogués, ( raspuri [at] protonmail.com ).
 #   Copyright (C) 2019+ by Oriol Cervelló i Nogués
 #==========================================================================
 # License: GNU GPLv3.0
