@@ -17,12 +17,9 @@ Already build images can be found in [DockerHub oriolcervello/raspuri](https://h
 
 In addition to the images,  [this mandatory data]() is necessary in order that the WRF works and for some plots. As it is very heavy is not in the repo. The data for the WRF can be find individualy in [UCAR data](https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html) and the images for the plots in [NASA Images](https://visibleearth.nasa.gov/images/73934/topography).
 
-If your interest is just in the forecasting, check the [Run Image](https://github.com/oriolcervello/raspuri/tree/master/raspuri2_run). Otherwise, check the other two images.
+If your interest is just in the forecasting, check the [Run Image](https://github.com/oriolcervello/raspuri/tree/master/raspuri2_run). Otherwise, check also the other two images (directories).
 
-Web?
-
-In construction...
-
+In the [Web](https://github.com/oriolcervello/raspuri/tree/master/web) directroy there is the Dockerfile to create a simple Nginx server and the html and js of the web. It is quite presonalized to the region you are forecasting, but it can be reused changing the labels in the html and some other variables in the js (like the coordinates to position in the map).
 
 ## RASP Workflow
 
@@ -47,5 +44,8 @@ Web:
 * [w3schools.com](https://www.w3schools.com/)
 * [Leaflet](https://leafletjs.com/)
 
-## Credit
+## Credit & License
 Cervelló, Oriol. RASPURI v2. 2019. [github.com/oriolcervello/raspuri](https://github.com/oriolcervello/raspuri)
+raspuri@protonmail.com
+
+Find copy of GNU GPLv3.0 in License.txt
