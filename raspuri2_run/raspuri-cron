@@ -20,8 +20,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #==========================================================================
 #==========================================================================
-49 3 * * *  date >> /root/RASPURI/region/OUT/cron.log 2>&1
-50 3 * * *  bash /root/RASPURI/bin/raspuriRUN 0 >> /root/RASPURI/region/OUT/cron.log 2>&1
-#11 19 * * *  date >> /root/RASPURI/region/OUT/cron.log 2>&1
-#12 19 * * *  bash /root/RASPURI/bin/raspuriRUN 12 >> /root/RASPURI/region/OUT/cron.log 2>&1
+#49 3 * * *  date >> /root/RASPURI/region/OUT/cron.log 2>&1
+#50 3 * * *  bash /root/RASPURI/bin/raspuriRUN 0 >> /root/RASPURI/region/OUT/cron.log 2>&1
+15 49 * * *  date >> /root/RASPURI/region/OUT/cron.log 2>&1
+15 50 * * *  bash /root/RASPURI/bin/raspuriRUN 12 >> /root/RASPURI/region/OUT/cron.log 2>&1
 # An empty line is required at the end of this file for a valid cron file.

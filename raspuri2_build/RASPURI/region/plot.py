@@ -180,7 +180,7 @@ def plot_crop_stream(filename):
     im = Image.open(filename+'.png')
     #w, h = im.size
     im.crop((1096*2, 26*2, 1385*2, 761*2)).save(filename+'L.png')
-    im.crop((176*2, 97*2, 1043*2, 712*2)).save(filename+'.png')
+    im.crop((351, 193, 2084, 1421)).save(filename+'.png')
 
 def plot_cont_layer(prop_f,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx,dy,cmap,vmin,vmax,units):
     try:
@@ -232,7 +232,7 @@ def plot_strem_layer(U,V,prop,ptitle,filename,bounds,ls,ve,mosaic,x,y,valid_t,dx
 
         ##SAVE    
         plt.savefig(filename+'.png', transparent=True)
-        plt.savefig(filename+'original.png', transparent=True)
+        #plt.savefig(filename+'original.png', transparent=True)
         plt.close()
         plot_crop_stream(filename)
     except Exception as e: 
