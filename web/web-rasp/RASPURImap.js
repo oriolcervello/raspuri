@@ -103,7 +103,8 @@ function showParamMob()
 { 
   
   var e = document.getElementById("selectparamlist");
-  e.options[e.selectedIndex].click();
+  IMG._param =e.options[e.selectedIndex].value;
+  load_js();
 
 }
 function advancetime(hours)
