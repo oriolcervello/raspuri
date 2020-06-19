@@ -59,4 +59,36 @@ Substitute the path_to with the path in the host.
 
 ## Output directory structure
 
+### Logs
+
+#### rasppy.log
+Output of the rasp.py (raspuri) script. It is generally updated when it finishes. Almost all information is here.
+
+
+#### Cron.log
+It will have the comandline log of cron, It will print the time and date when starting a process and generally will be WRF processing prints. For example: (sign that the WRF processing has started)
+
+        Note: The following floating-point exceptions are signalling: IEEE_OVERFLOW_FLAG IEEE_UNDERFLOW_FLAG IEEE_DENORMAL
+         starting wrf task            0  of            1
+         starting wrf task            6  of            7
+         starting wrf task            1  of            7
+         starting wrf task            2  of            7
+         starting wrf task            0  of            7
+         starting wrf task            5  of            7
+         starting wrf task            3  of            7
+         starting wrf task            4  of            7
+         
+
+
+#### ftppy.log
+Output of the ftp.py script. This script is launched (several times in paralel) to download the GFS data. The outputs go there to not merge with the rasp.py ones (in rasppy.log will be confirmation of download or indication is something went wong to look at ftppy.log).
+
+#### LOG/
+Here there will be the logs produced by the WRF engine (wrf (as rsl), geogrid, ungrib, metgrid).
+
+
+### Plots
+In construction ...
+
+### Data
 In construction ...
