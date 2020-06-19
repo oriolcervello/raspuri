@@ -7,7 +7,7 @@ This image is the one we run to make the predictions. The Dockerfile will load t
 
 To build the container is as simple as:
 
-    sudo docker build -t raspuri .
+    sudo docker build -t oriolcervello/raspuri:run .
     
 To do so we will need the previous imgage that can be build or it will be directly downloaded from DockerHub. Also the following files:
 
@@ -53,7 +53,7 @@ One with the [mandatory data](https://drive.google.com/file/d/16MP99bnZVO9jsD-yb
 
 We can run the container as: 
 
-    sudo docker run --rm --name raspuri_container -d -v path_to/data/geog:/root/RASPURI/geog -v path_to/OUT:/root/RASPURI/region/OUT raspuri
+    sudo docker run --rm --name raspuri_container -d -v path_to/data/geog:/root/RASPURI/geog -v path_to/OUT:/root/RASPURI/region/OUT oriolcervello/raspuri:run
 
 Substitute the path_to with the path in the host.
 
