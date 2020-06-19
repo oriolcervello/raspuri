@@ -41,7 +41,9 @@ The call to the raspuriRUN script needs an argument (00, 06, 12 and 18) refering
 
 ### variables.py
 
-This file is to define the configuration of the raspuri python script. Some important parameters here are the times we want to compute. As the python script will overwrite the dates in namelist.input and namelist.wps with the correct ones for each run of the WRF. You can look at the file for more detail.
+This file is to define the configuration of the raspuri python script. Some important parameters here are the times we want to compute. As the python script will overwrite the dates in namelist.input and namelist.wps with the correct ones for each run of the WRF. Also to plot the output in layers for a map or as an image.
+
+You can look at the file for more detail.
 
 ## Run the container
 
