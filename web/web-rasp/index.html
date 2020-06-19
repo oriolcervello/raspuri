@@ -102,7 +102,7 @@
                         <A class="w3-xlarge w3-text-grey w3-hover-black" href='javascript:showRegion("dom01")' id="dom01"><i class="fas fa-map-marked-alt w3-xlarge"></i> Pirineus (5Km)</A><br>
                     </td>
                     <td align=center>
-                        <select class="w3-black" size="6">
+                        <select class="w3-black" id='selectparamlist' size="6">
                           <option onclick='javascript:showParam("general_")'>General Scenario</option>
                           <option onclick='javascript:showParam("sfcwind_")'>Surface Wind</option>
                           <option onclick='javascript:showParam("blavgwind_")'>BL Avg Wind</option>
@@ -148,6 +148,8 @@
                           <option onclick='javascript:showParam("pw_")'>Precipitable Water</option>
                           <option onclick='javascript:showParam("ctt_")'>Cloud top temp.</option>
                         </select>
+                        <br>
+						<button id="loadparam" class="w3-black" onclick='javascript:showParamMob()'>Load</button>
                     </td>
                 </tr>
             </table>
