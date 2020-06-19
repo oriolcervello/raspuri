@@ -86,17 +86,19 @@
                         <A class="w3-xlarge w3-text-grey w3-hover-black" href='javascript:showRegion("dom01")' id="dom01"><i class="fas fa-map-marked-alt w3-xlarge"></i> Pirineus (5Km)</A><br>
                     </td>
                     <td align=center>
-                        <select class="w3-black" size="6">
+                        <select class="w3-black" id='selectparamlist' size="6">
                           
 
-                          <option onclick="javascript:showSkew('Ager Desp._')">Sounding Ager Desp.</option>
-                          <option onclick="javascript:showParam('Ager Vall_')">Sounding Ager Vall</option>
-                          <option onclick="javascript:showParam('Bellmunt_')">Sounding Bellmunt</option>
-                          <option onclick="javascript:showParam('Belltall_')">Sounding Belltall</option>
-                          <option onclick="javascript:showParam('Berga - Rampa_')">Sounding Berga - Rampa</option>
-                          <option onclick="javascript:showParam('Castejon de Sos_')">Sounding Castejon de Sos</option>
-                          <option onclick="javascript:showParam('Organya_')">Sounding Organya</option>
-                          <option onclick="javascript:showParam('Rasos_')">Sounding Rasos</option>
+                          <option value="Ager Desp._" onclick="javascript:showSkew('Ager Desp._')">Sounding Ager Desp.</option>
+                          <option value="Ager Vall_" onclick="javascript:showParam('Ager Vall_')">Sounding Ager Vall</option>
+                          <option value="Bellmunt_" onclick="javascript:showParam('Bellmunt_')">Sounding Bellmunt</option>
+                          <option value="Belltall_" onclick="javascript:showParam('Belltall_')">Sounding Belltall</option>
+                          <option value="Berga - Rampa_" onclick="javascript:showParam('Berga - Rampa_')">Sounding Berga - Rampa</option>
+                          <option value="Castejon de Sos_" onclick="javascript:showParam('Castejon de Sos_')">Sounding Castejon de Sos</option>
+                          <option value="Organya_" onclick="javascript:showParam('Organya_')">Sounding Organya</option>
+                          <option value="Rasos_" onclick="javascript:showParam('Rasos_')">Sounding Rasos</option>
+                        <br>
+	            		<button id="loadparam" class="w3-black" onclick='javascript:showParamMob()'>Load</button>
                         </select>
                     </td>
                 </tr>
