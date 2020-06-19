@@ -73,6 +73,17 @@ function showParam(param)
   IMG._param = param;
   load_js();
 }
+function showParamMob()
+{ 
+  
+  var e = document.getElementById("selectparamlist");
+  IMG._param =e.options[e.selectedIndex].value;
+  IMG._ht = origheight;
+  IMG._wid = origwidth;
+  load_js();
+
+}
+
 function advancetime(hours)
 {
   bstr= "b"+IMG._time;
