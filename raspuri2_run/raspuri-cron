@@ -22,6 +22,10 @@
 #==========================================================================
 #49 3 * * *  date >> /root/RASPURI/region/OUT/cron.log 2>&1
 #50 3 * * *  bash /root/RASPURI/bin/raspuriRUN 0 >> /root/RASPURI/region/OUT/cron.log 2>&1
+#49 9 * * *  date >> /root/RASPURI/region/OUT/cron.log 2>&1
+#50 9 * * *  bash /root/RASPURI/bin/raspuriRUN 6 >> /root/RASPURI/region/OUT/cron.log 2>&1
 49 15 * * *  date >> /root/RASPURI/region/OUT/cron.log 2>&1
 50 15 * * *  bash /root/RASPURI/bin/raspuriRUN 12 >> /root/RASPURI/region/OUT/cron.log 2>&1
+#49 21 * * *  date >> /root/RASPURI/region/OUT/cron.log 2>&1
+#50 21 * * *  bash /root/RASPURI/bin/raspuriRUN 18 >> /root/RASPURI/region/OUT/cron.log 2>&1
 # An empty line is required at the end of this file for a valid cron file.
