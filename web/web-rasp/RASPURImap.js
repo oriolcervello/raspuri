@@ -99,6 +99,13 @@ function showParam(param)
   IMG._param = param;
   load_js();
 }
+function showParamMob()
+{ 
+  
+  var e = document.getElementById("selectparamlist");
+  e.options[e.selectedIndex].click();
+
+}
 function advancetime(hours)
 {
   bstr= "b"+IMG._time;
