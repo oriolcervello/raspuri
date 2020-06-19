@@ -6,4 +6,6 @@ This image adds the code of raspuri to the image with the WRF engine and all the
 
 ## Structure of RASPURI
 
+Main Python scripts of the rasp.
+
 In construction ...
