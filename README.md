@@ -15,7 +15,7 @@ The structure of this RASP (and repo) is divided in 3 Docker images.
 
 Already build images can be found in [DockerHub oriolcervello/raspuri](https://hub.docker.com/repository/docker/oriolcervello/raspuri).
 
-In addition to the images,  [this mandatory data]() is necessary in order that the WRF works and for some plots. As it is very heavy is not in the repo. The data for the WRF can be find individualy in [UCAR data](https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html) and the images for the plots in [NASA Images](https://visibleearth.nasa.gov/images/73934/topography).
+In addition to the images,  [this mandatory data](https://drive.google.com/file/d/16MP99bnZVO9jsD-ybPy8_RFMs5S3QMyT/view?usp=sharing) is necessary in order that the WRF works and for some plots. As it is very heavy is not in the repo. The data for the WRF can be find individualy in [UCAR data](https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html) and the images for the plots in [NASA Images](https://visibleearth.nasa.gov/images/73934/topography).
 
 If your interest is just in the forecasting, check the [Run Image](https://github.com/oriolcervello/raspuri/tree/master/raspuri2_run). Otherwise, check also the other two images (directories).
 
