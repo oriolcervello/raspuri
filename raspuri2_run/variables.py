@@ -30,8 +30,7 @@ DAYS_TO_PROCESS = 3 #max 5
 START_HH = 11 #local time
 END_HH = 18 #local time, max 23
 DOMAINS = 2
-#HOURS_TO_AVOID = 6 #h to avoid from processing, forecast will start and end h hours latter to avoid forecasting the processing hour
-#NAMELIST INPUT AND WPS LINES
+#NAMELIST_INPUT AND WPS_INPUT LINES CONCERNING PROCESSING TIME (CHECK WHICH LINES ARE ON Cat/)
 BEGIN_INPUT_LINES=2
 END_INPUT_LINE=18
 BEGIN_WPS_LINES=4
@@ -56,9 +55,9 @@ SOUNDINGS_NAMES= ['Belltall',
                   'Berga - Rampa',
                   'Pic Moros']
 
-#PLOT TYPE
+#PLOT TYPE True=LAYER FOR MAP, False=COMPLETE IMAGE
 PLOTTYPELAYER=True
-#DOTS IN MAPS
+#DOTS AND TOPO IN THE MAP, JUST FOR COMPLETE IMAGE TYPE
 DOTY = [41.494712,42.045788,42.227622,42.137173,42.099635,42.523919] #LAT
 DOTX = [1.209950,0.745994,1.324271,1.772629,2.293433,0.499515] #LON
 DOTTITLE = ['Belltall', 'Ager','Organya','Rasos','Bellmunt','Castejon']
