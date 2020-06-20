@@ -2,7 +2,7 @@
 
 RASPURI v2 is a new developed RASP (Regional Atmospheric Soaring Program). The idea came from updating to a 64 bit architecture and WRF to v4 the original [RASPURI](http://raspuri.mooo.com), which is a original [Dr Jack's RASP](http://www.drjack.info/). RASPURI v2 is full coded in Python and Bash, except the [Fortran subroutines](https://github.com/oriolcervello/ncl_jack_fortran-for-Python) developed by Dr. Jack for some of the postprocessings. The whole application runs through Docker. 
 
-Actual predictions can be found in [raspuri.catio.eu](http://raspuri.catio.eu/). In case the server is down, an example of the output predictions and the web page can be find [here](https://oriolcervello.github.io/).
+Actual predictions can be found in [raspuri.catio.eu](http://raspuri.catio.eu/). In case the server is down, an example of the output predictions and the web page can be find [here](https://oriolcervello.github.io/). Also in cas of not wanting the layer-for-map style there is the posibility of output complete images check: [big domain exaple images](https://github.com/oriolcervello/oriolcervello.github.io/tree/master/OUT/plot/plot_images/dom01/20200619), [small domain exaple images](https://github.com/oriolcervello/oriolcervello.github.io/tree/master/OUT/plot/plot_images/dom02/20200619).
 
 
 ## Repository
