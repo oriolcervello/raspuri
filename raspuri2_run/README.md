@@ -41,7 +41,7 @@ The call to the raspuriRUN script needs an argument (00, 06, 12 and 18) refering
 
 ### variables.py
 
-This file is to define the configuration of the raspuri python script. Some important parameters here are the times we want to compute. As the python script will overwrite the dates in namelist.input and namelist.wps with the correct ones for each run of the WRF. Also to plot the output in layers (as in the map [oriolcervello.github.io](https://github.com/oriolcervello/oriolcervello.github.io) ) or as an image (see examples: [big domain exaple images](https://github.com/oriolcervello/oriolcervello.github.io/tree/master/OUT/plot/plot_images/dom01/20200619), [small domain exaple images](https://github.com/oriolcervello/oriolcervello.github.io/tree/master/OUT/plot/plot_images/dom02/20200619) ).
+This file is to define the configuration of the raspuri python script. Some important parameters here are the times we want to compute. As the python script will overwrite the dates in namelist.input and namelist.wps with the correct ones for each run of the WRF. Also to plot the output in layers (as in the map [oriolcervello.github.io](https://oriolcervello.github.io/) ) or as an image (see examples: [big domain exaple images](https://github.com/oriolcervello/oriolcervello.github.io/tree/master/OUT/plot/plot_images/dom01/20200619), [small domain exaple images](https://github.com/oriolcervello/oriolcervello.github.io/tree/master/OUT/plot/plot_images/dom02/20200619) ).
 
 You can look at the file for more detail.
 
