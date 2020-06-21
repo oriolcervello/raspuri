@@ -54,7 +54,7 @@ while(not os.path.isfile('datagfs/'+file_name)):
         #ftp.set_pasv(False)
     except:
         print('****ERROR connecting to FTP server, ftp_call.py****')
-        exit()
+        #exit()
 
 
 
