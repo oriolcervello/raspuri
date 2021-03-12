@@ -34,13 +34,16 @@ eval $(~/.linuxbrew/bin/brew shellenv)
 #check versions
 NETCDF="$(echo /root/.linuxbrew/Cellar/netcdf/*)"
 HDF5="$(echo /root/.linuxbrew/Cellar/hdf5/*)"
+
+# number of cores to parallel compile
+J="-j $(nproc)"
+
 export NETCDF \
 HDF5 \
 JASPERLIB=/root/grib2/lib \
 JASPERINC=/root/grib2/include \
 WGRIB=/root/grib2 \
-# number of cores to parallel compile
-J='-j 4' \
+J \
 CC=gcc-9 \
 CXX=g++-9 \
 FC=gfortran-9 \
