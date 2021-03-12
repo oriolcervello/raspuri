@@ -32,13 +32,18 @@
 
 eval $(~/.linuxbrew/bin/brew shellenv) 
 #check versions
-export NETCDF=/root/.linuxbrew/Cellar/netcdf/4.7.4 \
-HDF5=/root/.linuxbrew/Cellar/hdf5/1.12.0 \
+NETCDF="$(echo /root/.linuxbrew/Cellar/netcdf/*)"
+HDF5="$(echo /root/.linuxbrew/Cellar/hdf5/*)"
+
+# number of cores to parallel compile
+J="-j $(nproc)"
+
+export NETCDF \
+HDF5 \
 JASPERLIB=/root/grib2/lib \
 JASPERINC=/root/grib2/include \
 WGRIB=/root/grib2 \
-# number of cores to parallel compile
-J='-j 4' \
+J \
 CC=gcc-9 \
 CXX=g++-9 \
 FC=gfortran-9 \
@@ -51,12 +56,12 @@ cd WRF
 ./configure 
 #34 1  (dmpar GNU gfortran)
 ./compile em_real
-# fer que sigui compilador v9
-#SFC             =       gfortran
-#SCC             =       gcc
-#CCOMP           =       gcc
 cd ../WPS
 ./clean
+# WPS' menu ignores our CC and FC and sets "gcc" and "gfortran" as the name of the compilers.
+# But gfortran points to gfortran10 which can't build WPS, and gcc is the host's GCC 7, not the homebrew version
+# Fix those choices before we run configure:
+sed -i.bak -e 's/SFC\s*=\s*gfortran$/SFC=gfortran-9/' -e 's/SCC\s*=\s*gcc$/SCC=gcc-9/' arch/configure.defaults
 ./configure
 #1 (serial gfortran with GRIB2)
 ./compile
