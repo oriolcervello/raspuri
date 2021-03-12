@@ -32,8 +32,10 @@
 
 eval $(~/.linuxbrew/bin/brew shellenv) 
 #check versions
-export NETCDF=/root/.linuxbrew/Cellar/netcdf/4.7.4 \
-HDF5=/root/.linuxbrew/Cellar/hdf5/1.12.0 \
+NETCDF="$(echo /root/.linuxbrew/Cellar/netcdf/*)"
+HDF5="$(echo /root/.linuxbrew/Cellar/hdf5/*)"
+export NETCDF \
+HDF5 \
 JASPERLIB=/root/grib2/lib \
 JASPERINC=/root/grib2/include \
 WGRIB=/root/grib2 \
