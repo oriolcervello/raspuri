@@ -56,12 +56,12 @@ cd WRF
 ./configure 
 #34 1  (dmpar GNU gfortran)
 ./compile em_real
-# fer que sigui compilador v9
-#SFC             =       gfortran
-#SCC             =       gcc
-#CCOMP           =       gcc
 cd ../WPS
 ./clean
+# WPS' menu ignores our CC and FC and sets "gcc" and "gfortran" as the name of the compilers.
+# But gfortran points to gfortran10 which can't build WPS, and gcc is the host's GCC 7, not the homebrew version
+# Fix those choices before we run configure:
+sed -i.bak -e 's/SFC\s*=\s*gfortran$/SFC=gfortran-9/' -e 's/SCC\s*=\s*gcc$/SCC=gcc-9/' arch/configure.defaults
 ./configure
 #1 (serial gfortran with GRIB2)
 ./compile
