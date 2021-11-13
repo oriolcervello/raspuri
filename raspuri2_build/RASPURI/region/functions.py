@@ -79,7 +79,8 @@ def check_start_download(foldername,folder_h,file_name):
                 #print(ftp_list)
                 if (folder_h in ftp_list):
                     ftp.cwd(folder_h)        
-                
+                    ftp.cwd('atmos')    
+                    
                     ftp_list= []
                     ftp_list=ftp.nlst()
                     if (file_name in ftp_list):
